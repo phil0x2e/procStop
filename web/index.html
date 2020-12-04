@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <meta charset="UTF-8" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <h1>Input Tasks for new day</h1>
+    <form>
+      <label for="day">Day:</label><br />
+      <input type="date" id="day" name="day" /><br /><br />
+      <!--- Datalist will be dynamic from values already in database -->
+      <table id="tbl-inputs">
+        <tr>
+          <td><label for="task1">Task:</label></td>
+          <td><label for="time1">Time:</label></td>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" name="task1" id="task1" list="tasks" />
+            <datalist id="tasks">
+              <option value="Arbeit"></option>
+              <option value="Uni"></option>
+            </datalist>
+          </td>
+          <td>
+            <input
+              type="number"
+              id="time1"
+              name="time1"
+              min="0"
+              max="1440"
+            />min
+          </td>
+        </tr>
+      </table>
+      <button type="button" onclick="addRow('tbl-inputs');">Add Task</button>
+      <button type="button" onclick="deleteRow('tbl-inputs');">
+        Remove Task
+      </button>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

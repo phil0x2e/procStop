@@ -1,0 +1,17 @@
+CREATE TABLE days (
+	id INTEGER PRIMARY KEY,
+	day TEXT NOT NULL
+);
+
+CREATE TABLE tasks (
+	id INTEGER PRIMARY KEY,
+	name TEXT NOT NULL,
+	time_to_spend INTEGER DEFAULT 0,
+	time_already_spent INTEGER DEFAULT 0,
+	day_id INTEGER NOT NULL
+);
+$current_day = "2020-11-30"
+INSERT INTO days (day) VALUES ($current_day);
+INSERT INTO tasks (name, time_to_spend, day_id) VALUES ("Bachelor Stuff", 60, $current_day_id);
+
+SELECT tasks.name, tasks.time_to_spend, tasks.time_already_spent FROM days JOIN tasks ON days.id=tasks.day_id where days.day=$current_day;
