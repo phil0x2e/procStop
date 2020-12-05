@@ -23,4 +23,18 @@ for ($i = 1; ; $i++) {
         $times[] = $current_time;
     }
 }
+$sql = "CREATE TABLE IF NOT EXISTS days (
+	id INTEGER PRIMARY KEY,
+	day TEXT NOT NULL
+);"
+
+$db = new PDO("sqlite:database.sqlite3");
+if (!($stmt = $db->prepare($sql))) {
+	die("Error in prepare: ".$db->error);
+}
+	
+if (!$stmt->execute()){
+	die("Error in execute: ".$stmt->error);
+}
+$stmt->close();
 ?>
