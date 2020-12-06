@@ -1,4 +1,8 @@
 <?php
+ini_set("display_errors", 1);
+ini_set("track_errors", 1);
+ini_set("html_errors", 1);
+error_reporting(E_ALL);
 $tasks = [];
 $times = [];
 
@@ -34,7 +38,7 @@ if (!($stmt = $db->prepare($sql))) {
 }
 
 if (!$stmt->execute()){
-	die("Error in execute: ".$stmt->error);
+    print_r($stmt->errorInfo());
+	die("Error in execute.");
 }
-$stmt->close();
 ?>
