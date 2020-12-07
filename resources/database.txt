@@ -14,4 +14,6 @@ $current_day = "2020-11-30"
 INSERT INTO days (day) VALUES ($current_day);
 INSERT INTO tasks (name, time_to_spend, day_id) VALUES ("Bachelor Stuff", 60, $current_day_id);
 
-SELECT tasks.name, tasks.time_to_spend, tasks.time_already_spent FROM days JOIN tasks ON days.id=tasks.day_id where days.day=$current_day;
+#SELECT tasks.name, tasks.time_to_spend, tasks.time_already_spent FROM days JOIN tasks ON days.id=tasks.day_id where days.day=$current_day;
+
+SELECT days.day, tasknames.name, tasks.time_to_spend, tasks.time_already_spent, tasks.finished FROM days JOIN tasks ON days.id=tasks.days_id JOIN tasknames on tasks.tasknames_id=tasknames.id;
