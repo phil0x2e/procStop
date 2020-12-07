@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 
 function check() {
     if (!isset($_POST["date"]) || $_POST["date"] == ""){
-       die("Please select date. Go <a href='/index.php'>Back</a>.");
+       die("Please select date. Go <a href='index.php'>Back</a>.");
     }
     if (!isset($_POST["task1"]) || !isset($_POST["time1"]) || $_POST["task1"] == "" || $_POST["time1"] == ""){
-        die("Please enter a task with a time. Go <a href='/index.php'>Back</a>.");
+        die("Please enter a task with a time. Go <a href='index.php'>Back</a>.");
     }
 }
 
@@ -145,6 +145,6 @@ $db = new PDO("sqlite:database.sqlite3");
 create_tables($db);
 insert_all($db, $date, $tasks_and_times);
 
-header("Location: /index.php");
+header("Location: index.php");
 exit();
 ?>
