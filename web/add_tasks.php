@@ -3,13 +3,13 @@
   <head>
     <title>ProcStop - Add Tasks</title>
     <meta charset="UTF-8" />
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
   </head>
   <body>
     <h1>Input Tasks for new day</h1>
-    <form action="add_tasks.php" method="post">
+    <form action="php/add_tasks.php" method="post">
       <label for="date">Day:</label><br />
-      <input type="date" id="date" name="date"/><br /><br />
+      <input type="date" id="date" name="date" value="<?php echo date("Y-m-d");?>"/><br /><br />
       <table id="tbl-inputs">
         <tr>
           <td><label for="task1">Task:</label></td>
