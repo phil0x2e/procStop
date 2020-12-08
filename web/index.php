@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Test</title>
+    <title>ProcStop - Add Tasks</title>
     <meta charset="UTF-8" />
     <script src="main.js"></script>
   </head>
   <body>
     <h1>Input Tasks for new day</h1>
-    <form action="new_day.php" method="post">
+    <form action="add_tasks.php" method="post">
       <label for="date">Day:</label><br />
       <input type="date" id="date" name="date"/><br /><br />
-      <!--- Datalist will be dynamic from values already in database -->
       <table id="tbl-inputs">
         <tr>
           <td><label for="task1">Task:</label></td>
@@ -18,10 +17,27 @@
         </tr>
         <tr>
           <td>
-            <input type="text" name="task1" id="task1" list="tasks" />
+            <input type="text" name="task1" id="task1" list="tasks" autocomplete="off"/>
             <datalist id="tasks">
-              <option value="Arbeit"></option>
-              <option value="Uni"></option>
+            <?php
+            function get_task_names($db) {
+                $sql = "SELECT name FROM tasknames;";
+
+                if (!($stmt = $db->prepare($sql))) {
+                    return array();
+                }
+
+                if (!$stmt->execute()) {
+                    return array();
+                }
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $rows;
+            }
+            $db = new PDO("sqlite:database.sqlite3");
+            foreach (get_task_names($db) as $row) {
+                echo "<option value='" . $row["name"] . "'></option>";
+            }
+            ?>
             </datalist>
           </td>
           <td>
@@ -43,3 +59,5 @@
     </form>
   </body>
 </html>
+
+
