@@ -1,11 +1,42 @@
+/* General */
+button {
+  background-color: #e7e7e7;
+  color: black;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 32px;
+  transition-duration: 0.4s;
+}
+button:hover {
+  background-color: #afafaf;
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  color: black;
+  font-size: 18px;
+  border: 1px solid #ecf0f1;
+  border-radius: 4px;
+  background: #ecf0f1;
+  padding: 5px;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* View Tasks Page */
 #task_tbl {
   border: 1px solid black;
   border-collapse: collapse;
 }
-#task_tbl th, td {
+#task_tbl th,
+td {
   padding: 7px;
 }
-#task_tbl tr:nth-child(even){
+#task_tbl tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 #task_tbl tr:hover {

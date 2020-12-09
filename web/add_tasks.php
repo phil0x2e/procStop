@@ -4,16 +4,17 @@
     <title>ProcStop - Add Tasks</title>
     <meta charset="UTF-8" />
     <script src="js/main.js"></script>
+	<link rel="stylesheet" href="css/main.css"/>
   </head>
   <body>
     <h1>Add new Tasks</h1>
     <form action="php/add_tasks.php" method="post">
-      <label for="date">Date:</label><br />
+      <label for="date"><b>Date:</b></label>
       <input type="date" id="date" name="date" value="<?php echo date("Y-m-d");?>"/><br /><br />
       <table id="tbl-inputs">
         <tr>
-          <td><label for="task1">Task:</label></td>
-          <td><label for="time1">Time:</label></td>
+          <th><label for="task1">Task</label></th>
+          <th><label for="time1">Time</label></th>
         </tr>
         <tr>
           <td>
@@ -51,10 +52,8 @@
           </td>
         </tr>
       </table>
-      <button type="button" onclick="addRow('tbl-inputs');">Add Task</button>
-      <button type="button" onclick="deleteRow('tbl-inputs');">
-        Remove Task
-      </button>
+      <button type="button" onclick="addRow('tbl-inputs');">➕</button>
+      <button type="button" onclick="deleteRow('tbl-inputs');">➖</button>
       <button type="submit">Submit</button>
     </form>
   </body>
