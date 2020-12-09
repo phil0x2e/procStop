@@ -1,0 +1,17 @@
+#task_tbl {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+#task_tbl th, td {
+  padding: 7px;
+}
+#task_tbl tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+#task_tbl tr:hover {
+  background-color: #ddd;
+}
+
+#task_tbl th {
+  background-color: #afafaf;
+}
