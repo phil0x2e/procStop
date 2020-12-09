@@ -17,6 +17,5 @@ function get_tasks($db, $day) {
 }
 $db = new PDO("sqlite:../database.sqlite3");
 $day = $_POST["day"];
-error_log($day);
 echo json_encode(get_tasks($db, $day));
 ?>

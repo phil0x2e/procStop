@@ -33,7 +33,7 @@ function set_task_table() {
       cell_name.innerHTML = response[i].name;
       cell_time.innerHTML = response[i].time_to_spend;
       cell_time_spent.innerHTML = response[i].time_already_spent;
-      cell_finished.innerHTML = response[i].finished == 0 ? "✓" : "✗";
+      cell_finished.innerHTML = response[i].finished == 0 ? "✗" : "✓";
     }
   };
   request.open("POST", "../php/ajax_get_tasks.php", true);

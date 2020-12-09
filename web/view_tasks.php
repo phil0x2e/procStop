@@ -11,7 +11,7 @@
           <label for="date">Day:</label><br />
           <input type="date" id="date" name="date" value="<?php echo date("Y-m-d"); ?>"/>
       <button type="button" onclick="set_task_table()">Get Tasks</button>
-        </form>
+        </form><br>
     <table id="task_tbl" border="1">
     <tr>
         <th>Task</th>
