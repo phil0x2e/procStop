@@ -27,12 +27,12 @@ function set_task_table() {
     for (let i = 0; i < response.length; i++) {
       let new_row = table.insertRow(-1);
       let cell_name = new_row.insertCell(0);
-      let cell_time = new_row.insertCell(1);
+      let cell_minimum_time = new_row.insertCell(1);
       let cell_time_spent = new_row.insertCell(2);
       let cell_finished = new_row.insertCell(3);
       cell_name.innerHTML = response[i].name;
-      cell_time.innerHTML = response[i].time_to_spend;
-      cell_time_spent.innerHTML = response[i].time_already_spent;
+      cell_minimum_time.innerHTML = response[i].minimum_time;
+      cell_time_spent.innerHTML = response[i].time_spent;
       cell_finished.innerHTML = response[i].finished == 0 ? "✗" : "✓";
     }
   };
@@ -40,5 +40,5 @@ function set_task_table() {
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   let date_field = document.getElementById("date");
   let date = date_field.value;
-  request.send(`day=${date}`);
+  request.send(`date=${date}`);
 }

@@ -39,30 +39,30 @@ function get_tasks_and_times() {
     return ["tasks" => $tasks, "times" => $times];
 }
 
-function create_table_days($db) {
-    $sql = "CREATE TABLE IF NOT EXISTS days (
+function create_table_dates($db) {
+    $sql = "CREATE TABLE IF NOT EXISTS dates (
         id INTEGER PRIMARY KEY,
-        day TEXT NOT NULL UNIQUE
+        date TEXT NOT NULL UNIQUE
     );";
 
     if (!($stmt = $db->prepare($sql))) {
-        die("Error in create_table_days prepare: " . $db->error);
+        die("Error in create_table_dates prepare: " . $db->error);
     }
 
     if (!$stmt->execute()) {
         print_r($stmt->errorInfo());
-        die("Error in create_table_days execute.");
+        die("Error in create_table_dates execute.");
     }
 }
 
 function create_table_tasks($db) {
     $sql = "CREATE TABLE IF NOT EXISTS tasks (
         id INTEGER PRIMARY KEY,
-        time_to_spend INTEGER NOT NULL DEFAULT 0,
-        time_already_spent INTEGER NOT NULL DEFAULT 0,
+        minimum_time INTEGER NOT NULL DEFAULT 0,
+        time_spent INTEGER NOT NULL DEFAULT 0,
         finished INTEGER NOT NULL DEFAULT 0,
         tasknames_id INTEGER NOT NULL,
-        days_id INTEGER NOT NULL
+        dates_id INTEGER NOT NULL
     );";
 
     if (!($stmt = $db->prepare($sql))) {
@@ -92,13 +92,13 @@ function create_table_tasknames($db) {
 }
 
 function create_tables($db) {
-    create_table_days($db);
+    create_table_dates($db);
     create_table_tasks($db);
     create_table_tasknames($db);
 }
 
 function insert_date($db, $date) {
-    $sql = "INSERT OR IGNORE INTO days (day) VALUES (?);";
+    $sql = "INSERT OR IGNORE INTO dates (date) VALUES (?);";
     if (!($stmt = $db->prepare($sql))) {
         die("Error in insert_date prepare: " . $db->error);
     }
@@ -122,12 +122,12 @@ function insert_taskname($db, $taskname) {
 }
 
 function insert_task($db, $taskname, $time, $date) {
-    $sql = "INSERT INTO tasks (time_to_spend, tasknames_id, days_id)
-        VALUES (:time_to_spend, (SELECT id FROM tasknames WHERE name=:taskname), (SELECT id FROM days WHERE day=:date));";
+    $sql = "INSERT INTO tasks (minimum_time, tasknames_id, dates_id)
+        VALUES (:minimum_time, (SELECT id FROM tasknames WHERE name=:taskname), (SELECT id FROM dates WHERE date=:date));";
     if (!($stmt = $db->prepare($sql))) {
         die("Error in insert_task prepare: " . $db->error);
     }
-    $stmt->bindParam(":time_to_spend", $time);
+    $stmt->bindParam(":minimum_time", $time);
     $stmt->bindParam(":taskname", $taskname);
     $stmt->bindParam(":date", $date);
     if (!$stmt->execute()) {

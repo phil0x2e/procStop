@@ -6,9 +6,9 @@
     <script src="js/main.js"></script>
   </head>
   <body>
-    <h1>Add new Tasks for any day</h1>
+    <h1>Add new Tasks</h1>
     <form action="php/add_tasks.php" method="post">
-      <label for="date">Day:</label><br />
+      <label for="date">Date:</label><br />
       <input type="date" id="date" name="date" value="<?php echo date("Y-m-d");?>"/><br /><br />
       <table id="tbl-inputs">
         <tr>
