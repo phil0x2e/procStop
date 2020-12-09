@@ -19,9 +19,18 @@ function deleteRow(table_id) {
   }
 }
 
+function clear_task_table() {
+  let table = document.getElementById("task_tbl");
+  let number_rows = table.rows.length;
+  for (let i = 0; i < number_rows - 1; i++) {
+    table.deleteRow(-1);
+  }
+}
+
 function set_task_table() {
   let request = new XMLHttpRequest();
   request.onload = function () {
+    clear_task_table();
     response = JSON.parse(this.responseText);
     let table = document.getElementById("task_tbl");
     for (let i = 0; i < response.length; i++) {
