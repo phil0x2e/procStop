@@ -15,7 +15,7 @@
     <h1>Add new Tasks</h1>
     <form action="php/add_tasks.php" method="post">
       <label for="date"><b>Date:</b></label>
-      <input type="date" id="date" name="date" value="<?php echo date("Y-m-d");?>"/><br /><br />
+      <input type="date" id="date" name="date" value="<?php echo date("Y-m-d");?>" required/><br/><br />
       <table id="tbl-inputs">
         <tr>
           <th><label for="task1">Task</label></th>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
           <td>
-            <input type="text" name="task1" id="task1" list="tasks" autocomplete="off"/>
+            <input type="text" name="task1" id="task1" list="tasks" autocomplete="off" required/>
             <datalist id="tasks">
             <?php
             function get_task_names($db) {
@@ -53,6 +53,7 @@
               name="time1"
               min="0"
               max="1440"
+              required
             />min
           </td>
         </tr>

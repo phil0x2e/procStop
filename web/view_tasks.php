@@ -15,7 +15,7 @@
 	  <h1>View Tasks</h1>
         <form>
           <label for="date">Day:</label><br />
-          <input type="date" id="date" name="date" value="<?php echo date("Y-m-d"); ?>"/>
+          <input type="date" id="date" name="date" value="<?php echo date("Y-m-d"); ?>" required/>
       <button type="button" onclick="set_task_table()">Get Tasks</button>
         </form><br>
     <table id="task_tbl" border="1">

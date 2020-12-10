@@ -6,10 +6,9 @@ function addRow(table_id) {
   let current_row_number = table.rows.length - 1;
 
   cell1.innerHTML = `
-	<input type="text" id="task${current_row_number}" name="task${current_row_number}" list="tasks" autocomplete="off">`;
+	<input type="text" id="task${current_row_number}" name="task${current_row_number}" list="tasks" autocomplete="off" required \>`;
   cell2.innerHTML = `
-	<input type="number" id="time${current_row_number}" name="time${current_row_number}" min="0" max="1440">min
-	`;
+	<input type="number" id="time${current_row_number}" name="time${current_row_number}" min="0" max="1440" required \>min`;
 }
 
 function deleteRow(table_id) {
