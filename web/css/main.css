@@ -51,6 +51,14 @@ ul.navbar li a.active {
   background-color: #666;
 }
 
+span.success {
+  background-color: #4caf50;
+  padding: 10px 20px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 10px;
+}
+
 /* View Tasks Page */
 #task_tbl {
   border: 1px solid black;

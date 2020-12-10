@@ -152,6 +152,6 @@ $db = new PDO("sqlite:../database.sqlite3");
 create_tables($db);
 insert_all($db, $date, $tasks_and_times);
 
-header("Location: ../index.html");
+header("Location: ../add_tasks.php?success=true");
 exit();
 ?>

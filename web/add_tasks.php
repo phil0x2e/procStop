@@ -13,28 +13,26 @@
       <li><a href="view_tasks.php">View Tasks</a></li>
     </ul>
     <h1>Add new Tasks</h1>
-    <form action="php/add_tasks.php" method="post">
+    <form action="php/add_tasks_backend.php" method="post">
       <label for="date"><b>Date:</b></label>
-      <input type="date" id="date" name="date" value="<?php echo date("Y-m-d");?>" required/><br/><br />
+      <input type="date" id="date" name="date" value="<?php echo date(
+          "Y-m-d",
+      ); ?>" required/><br/><br />
       <table id="tbl-inputs">
         <tr>
-          <th><label for="task1">Task</label></th>
-          <th><label for="time1">Time</label></th>
-        </tr>
-        <tr>
           <td>
-            <input type="text" name="task1" id="task1" list="tasks" autocomplete="off" required/>
+            <input type="text" name="task1" id="task1" list="tasks" placeholder="Task" autocomplete="off" autofocus required/>
             <datalist id="tasks">
             <?php
             function get_task_names($db) {
                 $sql = "SELECT name FROM tasknames;";
 
                 if (!($stmt = $db->prepare($sql))) {
-                    return array();
+                    return [];
                 }
 
                 if (!$stmt->execute()) {
-                    return array();
+                    return [];
                 }
                 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $rows;
@@ -53,6 +51,7 @@
               name="time1"
               min="0"
               max="1440"
+              placeholder="Time in minutes"
               required
             />min
           </td>
@@ -61,8 +60,9 @@
       <button type="button" onclick="addRow('tbl-inputs');">➕</button>
       <button type="button" onclick="deleteRow('tbl-inputs');">➖</button>
       <button type="submit">Submit</button>
-    </form>
+    </form><br><br>
+    <?php if (isset($_GET["success"]) && $_GET["success"] == "true") {
+        echo "<span align='center' class='success'>Successfully inserted Tasks!</span>";
+    } ?>
   </body>
 </html>
-
-
