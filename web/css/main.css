@@ -27,6 +27,30 @@ input[type="date"] {
   visibility: visible !important;
 }
 
+ul.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  overflow: hidden;
+}
+ul.navbar li {
+  float: left;
+}
+ul.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+ul.navbar li a:hover {
+  background-color: black;
+}
+ul.navbar li a.active {
+  background-color: #666;
+}
+
 /* View Tasks Page */
 #task_tbl {
   border: 1px solid black;

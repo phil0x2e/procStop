@@ -7,6 +7,11 @@
 	<link rel="stylesheet" href="css/main.css"/>
   </head>
   <body>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="add_tasks.php">Add Tasks</a></li>
+      <li><a class="active" href="view_tasks.php">View Tasks</a></li>
+    </ul>
 	  <h1>View Tasks</h1>
         <form>
           <label for="date">Day:</label><br />

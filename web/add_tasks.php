@@ -7,6 +7,11 @@
 	<link rel="stylesheet" href="css/main.css"/>
   </head>
   <body>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="add_tasks.php">Add Tasks</a></li>
+      <li><a href="view_tasks.php">View Tasks</a></li>
+    </ul>
     <h1>Add new Tasks</h1>
     <form action="php/add_tasks.php" method="post">
       <label for="date"><b>Date:</b></label>
