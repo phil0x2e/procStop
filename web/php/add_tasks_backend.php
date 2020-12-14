@@ -10,12 +10,14 @@ function check() {
     }
     if (
         !isset($_POST["task1"]) ||
-        !isset($_POST["time1"]) ||
+        !isset($_POST["time_hours1"]) ||
+        !isset($_POST["time_minutes1"]) ||
         $_POST["task1"] == "" ||
-        $_POST["time1"] == ""
+        $_POST["time_hours1"] == "" ||
+        $_POST["time_minutes1"] == ""
     ) {
         die(
-            "Please enter a task with a time. Go <a href='../add_tasks.php'>Back</a>."
+            "Please enter a task and time. Go <a href='../add_tasks.php'>Back</a>."
         );
     }
 }
@@ -24,16 +26,18 @@ function get_tasks_and_times() {
     $tasks = [];
     $times = [];
     for ($i = 1; ; $i++) {
-        if (!isset($_POST["task" . $i]) || !isset($_POST["time" . $i])) {
+        if (!isset($_POST["task" . $i]) || !isset($_POST["time_hours" . $i]) || !isset($_POST["time_minutes" . $i])) {
             break;
         }
         $current_task = $_POST["task" . $i];
-        $current_time = $_POST["time" . $i];
+        $current_time_hours = $_POST["time_hours" . $i];
+        $current_time_minutes = $_POST["time_minutes" . $i];
         if ($current_task !== "") {
             $tasks[] = $current_task;
         }
-        if ($current_time !== "") {
-            $times[] = $current_time;
+        if ($current_time_hours !== "" && $current_time_minutes !== "") {
+            $current_time_minutes_total = $current_time_hours * 60 + $current_time_minutes;
+            $times[] = $current_time_minutes_total;
         }
     }
     return ["tasks" => $tasks, "times" => $times];

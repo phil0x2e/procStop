@@ -1,5 +1,6 @@
 FROM nginx:latest
 LABEL maintainer="Phil"
+ENV TZ=Europe/Berlin
 COPY site.conf /etc/nginx/conf.d/default.conf
 COPY web /var/www/html
 EXPOSE 80

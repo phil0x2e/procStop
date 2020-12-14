@@ -23,7 +23,7 @@
     <table id="task_tbl" border="1">
     <tr>
         <th>Task</th>
-        <th>Time</th>
+        <th>Minimum Time</th>
         <th>Time Spent</th>
         <th>Finished</th>
     </tr>

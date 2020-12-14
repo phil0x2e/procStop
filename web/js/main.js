@@ -1,14 +1,35 @@
 function addRow(table_id) {
   let table = document.getElementById(table_id);
   let new_row = table.insertRow(-1);
-  let cell1 = new_row.insertCell(0);
-  let cell2 = new_row.insertCell(1);
+  let cell_taskname = new_row.insertCell(0);
+  let cell_time = new_row.insertCell(1);
   let current_row_number = table.rows.length;
 
-  cell1.innerHTML = `
+  cell_taskname.innerHTML = `
 	<input type="text" id="task${current_row_number}" name="task${current_row_number}" list="tasks" autocomplete="off" placeholder="Task" required \>`;
-  cell2.innerHTML = `
-	<input type="number" id="time${current_row_number}" name="time${current_row_number}" min="0" max="1440" placeholder="Time in minutes" required \>min`;
+  cell_time.innerHTML = `
+            <input
+              type="number"
+              id="time_hours${current_row_number}"
+			  class="time_hours"
+              name="time_hours${current_row_number}"
+              min="0"
+              max="24"
+			  size="2"
+              placeholder="hours"
+              required
+            /> :
+            <input
+              type="number"
+              id="time_minutes${current_row_number}"
+			  class="time_minutes"
+              name="time_minutes${current_row_number}"
+              min="0"
+              max="59"
+			  size="2"
+              placeholder="min"
+              required
+            />`;
 }
 
 function deleteRow(table_id) {
@@ -26,6 +47,14 @@ function clear_task_table() {
   }
 }
 
+function minutes_to_hour_string(minutes) {
+  let minimum_time_hours = Math.floor(minutes / 60)
+    .toString()
+    .padStart(2, "0");
+  let minimum_time_minutes = (minutes % 60).toString().padStart(2, "0");
+  return `${minimum_time_hours}:${minimum_time_minutes}`;
+}
+
 function set_task_table() {
   let request = new XMLHttpRequest();
   request.onload = function () {
@@ -39,8 +68,12 @@ function set_task_table() {
       let cell_time_spent = new_row.insertCell(2);
       let cell_finished = new_row.insertCell(3);
       cell_name.innerHTML = response[i].name;
-      cell_minimum_time.innerHTML = response[i].minimum_time;
-      cell_time_spent.innerHTML = response[i].time_spent;
+      cell_minimum_time.innerHTML = minutes_to_hour_string(
+        response[i].minimum_time
+      );
+      cell_time_spent.innerHTML = minutes_to_hour_string(
+        response[i].time_spent
+      );
       cell_finished.innerHTML = response[i].finished == 0 ? "✗" : "✓";
     }
   };

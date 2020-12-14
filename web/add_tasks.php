@@ -47,13 +47,26 @@
           <td>
             <input
               type="number"
-              id="time1"
-              name="time1"
+              id="time_hours1"
+              name="time_hours1"
+			  class="time_hours"
               min="0"
-              max="1440"
-              placeholder="Time in minutes"
+              max="24"
+			  size="2"
+              placeholder="hours"
               required
-            />min
+            /> :
+            <input
+              type="number"
+              id="time_minutes1"
+              name="time_minutes1"
+			  class="time_minutes"
+              min="0"
+              max="59"
+			  size="2"
+              placeholder="min"
+              required
+            />
           </td>
         </tr>
       </table>
