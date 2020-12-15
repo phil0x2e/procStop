@@ -77,7 +77,7 @@ function set_task_table() {
       cell_finished.innerHTML = response[i].finished == 0 ? "✗" : "✓";
     }
   };
-  request.open("POST", "../php/ajax_get_tasks.php", true);
+  request.open("POST", "php/ajax_get_tasks.php", true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   let date_field = document.getElementById("date");
   let date = date_field.value;
