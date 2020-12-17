@@ -2,6 +2,23 @@
 <!-- Generator: Circuit Diagram, cdlibrary.dll 1.0.0.0 -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" width="1540" height="780" xmlns="http://www.w3.org/2000/svg">
+	<line x1="860" y1="290" x2="1000" y2="290" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1000" y1="290" x2="1000" y2="300" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1000" y1="300" x2="1050" y2="300" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1050" y1="250" x2="1050" y2="255" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1050" y1="295" x2="1050" y2="300" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<rect x="1042" y="255" width="16" height="40" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
+	<text x="1036" y="281" style="font-family:Arial;font-size:11px;text-anchor:end" dominant-baseline="middle" transform="rotate(0, 1036, 281)">10 kΩ</text>
+	<text x="1036" y="269" style="font-family:Arial;font-size:11px;text-anchor:end" dominant-baseline="middle" transform="rotate(0, 1036, 269)">Pull Down</text>
+	<line x1="1140" y1="170" x2="1140" y2="250" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1100" y1="250" x2="1140" y2="250" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<text x="1070" y="230" style="font-family:Arial;font-size:11px;text-anchor:start" dominant-baseline="middle" transform="rotate(0, 1070, 230)">Standby</text>
+	<line x1="1070" y1="250" x2="1071" y2="250" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1099" y1="250" x2="1100" y2="250" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<ellipse cx="1074" cy="250" rx="3" ry="3" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
+	<ellipse cx="1096" cy="250" rx="3" ry="3" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
+	<line x1="1077" y1="248" x2="1094" y2="242" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="860" y1="250" x2="1070" y2="250" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="620" y1="550" x2="730" y2="550" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="620" y1="440" x2="650" y2="440" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="650" y1="440" x2="650" y2="540" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
@@ -514,6 +531,8 @@
 	<line x1="670" y1="190" x2="730" y2="190" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="860" y1="210" x2="880" y2="210" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="860" y1="170" x2="1040" y2="170" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<ellipse cx="1050" cy="250" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
+	<ellipse cx="1140" cy="170" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="620" cy="550" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="620" cy="440" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="1040" cy="170" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
