@@ -147,8 +147,7 @@ impl LCD {
     }
 
     pub fn clear(&self) -> Result<(), gpio_cdev::Error> {
-        self.message_line1("")?;
-        self.message_line2("")?;
+        self.write_byte(0x01, self.cmd);
         Ok(())
     }
 
