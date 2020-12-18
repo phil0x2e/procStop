@@ -2,6 +2,15 @@
 <!-- Generator: Circuit Diagram, cdlibrary.dll 1.0.0.0 -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" width="1400" height="820" xmlns="http://www.w3.org/2000/svg">
+	<line x1="1110" y1="620" x2="1130" y2="620" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1180" y1="620" x2="1220" y2="620" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1130" y1="620" x2="1135" y2="620" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1175" y1="620" x2="1180" y2="620" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<rect x="1135" y="612" width="40" height="16" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
+	<text x="1155" y="606" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 1155, 606)">2.2 kΩ</text>
+	<text x="1155" y="594" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 1155, 594)">Sets Contrast</text>
+	<line x1="1110" y1="580" x2="1110" y2="620" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<line x1="1110" y1="580" x2="1200" y2="580" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="1170" y1="450" x2="1170" y2="560" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="880" y1="310" x2="1120" y2="310" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="1120" y1="270" x2="1120" y2="310" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
@@ -15,7 +24,6 @@
 	<line x1="1160" y1="320" x2="1160" y2="380" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="880" y1="350" x2="1280" y2="350" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="1280" y1="320" x2="1280" y2="350" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
-	<line x1="1200" y1="580" x2="1200" y2="600" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="1200" y1="580" x2="1220" y2="580" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="880" y1="470" x2="930" y2="470" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="930" y1="470" x2="930" y2="500" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
@@ -609,9 +617,9 @@
 	<line x1="690" y1="190" x2="750" y2="190" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="880" y1="210" x2="900" y2="210" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="880" y1="170" x2="1060" y2="170" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
+	<ellipse cx="1220" cy="620" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="1170" cy="450" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="1370" cy="380" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
-	<ellipse cx="1200" cy="590" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="1220" cy="450" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="1160" cy="170" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
 	<ellipse cx="650" cy="430" rx="2" ry="2" style="fill-opacity:1;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
