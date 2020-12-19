@@ -33,13 +33,15 @@ fn lcd_test() {
 
     //lcd.clear().unwrap();
 }
-
-fn main() {
-    let bit_delay_fn = Box::from(|| sleep(Duration::from_micros(10)));
-    let tm1637display = setup_gpio_cdev(TM_CLK, TM_DIO, bit_delay_fn, "/dev/gpiochip0");
+fn tm1637_test() {
+    let tm1637display = setup_gpio_cdev_predefined_delay(TM_CLK, TM_DIO, "/dev/gpiochip0");
     loop {
         let date = Local::now();
         tm1637display.display_time(date.hour(), date.minute());
         sleep(Duration::from_secs(1));
     }
+}
+
+fn main() {
+    tm1637_test();
 }
