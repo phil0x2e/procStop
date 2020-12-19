@@ -2,6 +2,13 @@ use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 use std::thread::sleep;
 use std::time::Duration;
 
+static LCD_LINE1: u8 = 0x80;
+static LCD_LINE2: u8 = 0xC0;
+static LCD_CHR: u8 = 1;
+static LCD_CMD: u8 = 0;
+static E_PULSE_NANOS: u64 = 500;
+static E_DELAY_NANOS: u64 = 500;
+
 pub struct LCD {
     chip: Chip,
     rs_handle: LineHandle,
@@ -12,12 +19,6 @@ pub struct LCD {
     d7_handle: LineHandle,
 
     width: usize,
-    line1: u8,
-    line2: u8,
-    chr: u8,
-    cmd: u8,
-    e_pulse_nanos: u64,
-    e_delay_nanos: u64,
 }
 
 impl LCD {
@@ -29,12 +30,6 @@ impl LCD {
         d6: u32,
         d7: u32,
         width: usize,
-        line1: u8,
-        line2: u8,
-        chr: u8,
-        cmd: u8,
-        e_pulse_nanos: u64,
-        e_delay_nanos: u64,
     ) -> Result<Self, gpio_cdev::Error> {
         let mut chip = Chip::new("/dev/gpiochip0")?;
         let rs_handle = chip
@@ -65,22 +60,16 @@ impl LCD {
             d6_handle,
             d7_handle,
             width,
-            line1,
-            line2,
-            chr,
-            cmd,
-            e_pulse_nanos,
-            e_delay_nanos,
         })
     }
 
     pub fn init_display(&self) -> Result<(), gpio_cdev::Error> {
-        self.write_byte(0x33, self.cmd)?;
-        self.write_byte(0x32, self.cmd)?;
-        self.write_byte(0x28, self.cmd)?;
-        self.write_byte(0x0C, self.cmd)?;
-        self.write_byte(0x06, self.cmd)?;
-        self.write_byte(0x01, self.cmd)?;
+        self.write_byte(0x33, LCD_CMD)?;
+        self.write_byte(0x32, LCD_CMD)?;
+        self.write_byte(0x28, LCD_CMD)?;
+        self.write_byte(0x0C, LCD_CMD)?;
+        self.write_byte(0x06, LCD_CMD)?;
+        self.write_byte(0x01, LCD_CMD)?;
         Ok(())
     }
 
@@ -130,24 +119,24 @@ impl LCD {
         let padded_message = format!("{:0width$}", message, width = self.width);
         let padded_message_bytes = padded_message.as_bytes();
         for i in 0..self.width {
-            self.write_byte(padded_message_bytes[i], self.chr)?;
+            self.write_byte(padded_message_bytes[i], LCD_CHR)?;
         }
         Ok(())
     }
 
     pub fn message_line1(&self, message: &str) -> Result<(), gpio_cdev::Error> {
-        self.write_byte(self.line1, self.cmd)?;
+        self.write_byte(LCD_LINE1, LCD_CMD)?;
         self.message(&message)?;
         Ok(())
     }
     pub fn message_line2(&self, message: &str) -> Result<(), gpio_cdev::Error> {
-        self.write_byte(self.line2, self.cmd)?;
+        self.write_byte(LCD_LINE2, LCD_CMD)?;
         self.message(&message)?;
         Ok(())
     }
 
     pub fn clear(&self) -> Result<(), gpio_cdev::Error> {
-        self.write_byte(0x01, self.cmd);
+        self.write_byte(0x01, LCD_CMD);
         Ok(())
     }
 
@@ -170,10 +159,10 @@ impl LCD {
     }
 
     fn sleep_delay(&self) {
-        sleep(Duration::from_micros(self.e_delay_nanos));
+        sleep(Duration::from_micros(E_DELAY_NANOS));
     }
 
     fn sleep_pulse(&self) {
-        sleep(Duration::from_micros(self.e_pulse_nanos));
+        sleep(Duration::from_micros(E_PULSE_NANOS));
     }
 }
