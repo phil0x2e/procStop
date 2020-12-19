@@ -36,9 +36,9 @@ fn main() {
     )
     .unwrap();
     lcd.init_display().unwrap();
-    lcd.message_line1("Test").unwrap();
-    lcd.message_line2("Klappts??!").unwrap();
+    lcd.message_line1("> Hallo,").unwrap();
+    lcd.message_line2("Welt! <").unwrap();
     sleep(Duration::from_secs(3));
 
-    lcd.clear().unwrap();
+    //lcd.clear().unwrap();
 }
