@@ -10,7 +10,6 @@ static E_PULSE_NANOS: u64 = 500;
 static E_DELAY_NANOS: u64 = 500;
 
 pub struct LCD {
-    chip: Chip,
     rs_handle: LineHandle,
     e_handle: LineHandle,
     d4_handle: LineHandle,
@@ -52,7 +51,6 @@ impl LCD {
             .request(LineRequestFlags::OUTPUT, 0, "LCD_D7")?;
 
         Ok(LCD {
-            chip,
             rs_handle,
             e_handle,
             d4_handle,
@@ -136,7 +134,7 @@ impl LCD {
     }
 
     pub fn clear(&self) -> Result<(), gpio_cdev::Error> {
-        self.write_byte(0x01, LCD_CMD);
+        self.write_byte(0x01, LCD_CMD)?;
         Ok(())
     }
 

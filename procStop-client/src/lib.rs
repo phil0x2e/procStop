@@ -1,4 +1,10 @@
+pub mod inputs;
 pub mod lcd_1602;
+pub mod led;
+pub mod progress_bar;
 pub mod tm1637_additions;
+pub use inputs::*;
 pub use lcd_1602::*;
+pub use led::*;
+pub use progress_bar::*;
 pub use tm1637_additions::*;
