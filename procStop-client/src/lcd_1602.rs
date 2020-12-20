@@ -1,3 +1,4 @@
+use super::utils::*;
 use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 use std::thread::sleep;
 use std::time::Duration;
@@ -72,39 +73,21 @@ impl LCD {
     }
 
     pub fn write_byte(&self, byte: u8, mode: u8) -> Result<(), gpio_cdev::Error> {
-        // set pins low
+        let bits = byte_to_bits(byte);
         self.rs_handle.set_value(mode)?;
-        self.set_all_data_low()?;
-        if byte & 0x10 == 0x10 {
-            self.d4_handle.set_value(1)?;
-        }
-        if byte & 0x20 == 0x20 {
-            self.d5_handle.set_value(1)?;
-        }
-        if byte & 0x40 == 0x40 {
-            self.d6_handle.set_value(1)?;
-        }
-        if byte & 0x80 == 0x80 {
-            self.d7_handle.set_value(1)?;
-        }
+        self.d4_handle.set_value(bits[3])?;
+        self.d5_handle.set_value(bits[2])?;
+        self.d6_handle.set_value(bits[1])?;
+        self.d7_handle.set_value(bits[0])?;
         self.sleep_delay();
         self.e_handle.set_value(1)?;
         self.sleep_pulse();
         self.e_handle.set_value(0)?;
         self.sleep_delay();
-        self.set_all_data_low()?;
-        if byte & 0x01 == 0x01 {
-            self.d4_handle.set_value(1)?;
-        }
-        if byte & 0x02 == 0x02 {
-            self.d5_handle.set_value(1)?;
-        }
-        if byte & 0x04 == 0x04 {
-            self.d6_handle.set_value(1)?;
-        }
-        if byte & 0x08 == 0x08 {
-            self.d7_handle.set_value(1)?;
-        }
+        self.d4_handle.set_value(bits[7])?;
+        self.d5_handle.set_value(bits[6])?;
+        self.d6_handle.set_value(bits[5])?;
+        self.d7_handle.set_value(bits[4])?;
         self.sleep_delay();
         self.e_handle.set_value(1)?;
         self.sleep_pulse();
@@ -141,14 +124,6 @@ impl LCD {
     pub fn set_all_handles_low(&self) -> Result<(), gpio_cdev::Error> {
         self.e_handle.set_value(0)?;
         self.rs_handle.set_value(0)?;
-        self.d4_handle.set_value(0)?;
-        self.d5_handle.set_value(0)?;
-        self.d6_handle.set_value(0)?;
-        self.d7_handle.set_value(0)?;
-        Ok(())
-    }
-
-    fn set_all_data_low(&self) -> Result<(), gpio_cdev::Error> {
         self.d4_handle.set_value(0)?;
         self.d5_handle.set_value(0)?;
         self.d6_handle.set_value(0)?;
