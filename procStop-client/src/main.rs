@@ -3,6 +3,8 @@ use chrono::TimeZone;
 use std::thread::sleep;
 use std::time::Duration;
 
+use rusqlite;
+
 use tm1637_gpio_driver::gpio_api::setup_gpio_cdev;
 use tm1637_gpio_driver::mappings::SegmentBits;
 use tm1637_gpio_driver::TM1637Adapter;
@@ -27,9 +29,8 @@ fn lcd_test() {
     )
     .unwrap();
     lcd.init_display().unwrap();
-    lcd.message_line1("> Hallo,").unwrap();
-    lcd.message_line2("Welt! <").unwrap();
-    sleep(Duration::from_secs(3));
+    lcd.message_line1("Klappt der Mist,").unwrap();
+    lcd.message_line2("denn jetzt auch??!!").unwrap();
 
     //lcd.clear().unwrap();
 }
@@ -42,6 +43,15 @@ fn tm1637_test() {
     }
 }
 
+fn db_test() -> rusqlite::Result<()> {
+    let db = Database::new("/var/www/html/procstop/database.sqlite3")?;
+    let tasks = db.get_tasks_for_date("2020-12-21")?;
+    for task in tasks {
+        println!("{:?}", task);
+    }
+    Ok(())
+}
+
 fn main() {
-    tm1637_test();
+    db_test().unwrap();
 }
