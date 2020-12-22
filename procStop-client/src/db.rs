@@ -14,13 +14,6 @@ pub struct Task {
     pub finished: bool,
 }
 
-fn u32_to_bool(n: u32) -> bool {
-    if n == 0 {
-        false
-    } else {
-        true
-    }
-}
 impl Database {
     pub fn new(path: &str) -> Result<Self> {
         let connection = Connection::open(path)?;
@@ -37,7 +30,7 @@ impl Database {
                 date: row.get(2)?,
                 minimum_time: row.get(3)?,
                 time_spent: row.get(4)?,
-                finished: u32_to_bool(row.get(5)?),
+                finished: row.get(5)?,
             })
         })?;
         let unwrapped_tasks = tasks.filter_map(|t| t.ok()).collect();
