@@ -46,7 +46,13 @@ fn tm1637_test() {
 fn db_test() -> rusqlite::Result<()> {
     let db = Database::new("/var/www/html/procstop/database.sqlite3")?;
     let tasks = db.get_tasks_for_date("2020-12-21")?;
-    for task in tasks {
+    for task in &tasks {
+        println!("{:?}", task);
+    }
+    println!();
+    db.task_increase_time_spent(tasks[0].id, 10)?;
+    let tasks = db.get_tasks_for_date("2020-12-21")?;
+    for task in &tasks {
         println!("{:?}", task);
     }
     Ok(())

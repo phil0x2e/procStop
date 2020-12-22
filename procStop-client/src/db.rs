@@ -6,15 +6,15 @@ pub struct Database {
 
 #[derive(Debug)]
 pub struct Task {
-    id: i32,
-    name: String,
-    date: String,
-    minimum_time: i32,
-    time_spent: i32,
-    finished: bool,
+    pub id: u32,
+    pub name: String,
+    pub date: String,
+    pub minimum_time: u32,
+    pub time_spent: u32,
+    pub finished: bool,
 }
 
-fn i32_to_bool(n: i32) -> bool {
+fn u32_to_bool(n: u32) -> bool {
     if n == 0 {
         false
     } else {
@@ -37,20 +37,39 @@ impl Database {
                 date: row.get(2)?,
                 minimum_time: row.get(3)?,
                 time_spent: row.get(4)?,
-                finished: i32_to_bool(row.get(5)?),
+                finished: u32_to_bool(row.get(5)?),
             })
         })?;
         let unwrapped_tasks = tasks.filter_map(|t| t.ok()).collect();
-        Ok((unwrapped_tasks))
+        Ok(unwrapped_tasks)
     }
 
-    pub fn task_set_finished(&self, task_id: i32) -> Result<()> {
-        // Stub TODO
+    pub fn task_set_finished(&self, task_id: u32) -> Result<()> {
+        let mut stmt = self
+            .connection
+            .prepare("UPDATE tasks SET finished=1 WHERE id=?1;")?;
+        stmt.execute(params![task_id])?;
         Ok(())
     }
 
-    pub fn task_set_time_spent(&self, task_id: i32, time_spent: i32) -> Result<()> {
-        // Stub TODO
+    pub fn task_set_time_spent(&self, task_id: u32, time_spent: u32) -> Result<()> {
+        let mut stmt = self
+            .connection
+            .prepare("UPDATE tasks SET Time_spent=?1 WHERE id=?2;")?;
+        stmt.execute(params![time_spent, task_id])?;
+        Ok(())
+    }
+
+    pub fn task_increase_time_spent(&self, task_id: u32, increment: u32) -> Result<()> {
+        let mut stmt = self
+            .connection
+            .prepare("SELECT time_spent FROM tasks WHERE id=?1;")?;
+        let old_time_spent: u32 = stmt.query_row(params![task_id], |row| row.get(0))?;
+
+        let mut stmt = self
+            .connection
+            .prepare("UPDATE tasks SET Time_spent=?1 WHERE id=?2;")?;
+        stmt.execute(params![old_time_spent + increment, task_id])?;
         Ok(())
     }
 }
