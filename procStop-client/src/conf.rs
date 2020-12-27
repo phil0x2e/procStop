@@ -5,7 +5,13 @@ use toml;
 
 #[derive(Deserialize, Debug)]
 pub struct Config {
+    pub database: DatabaseConf,
     pub gpio: GPIO,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct DatabaseConf {
+    pub path: String,
 }
 
 #[derive(Deserialize, Debug)]

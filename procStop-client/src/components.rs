@@ -31,7 +31,7 @@ pub struct Buttons {
     pub finished: inputs::Button,
 }
 
-pub fn init_components(conf: Config) -> Result<Components, gpio_cdev::Error> {
+pub fn init_components(conf: &Config) -> Result<Components, gpio_cdev::Error> {
     Ok(Components {
         leds: LEDs {
             status: led::LED::new(conf.gpio.leds.status, "status_led", &conf.gpio.path)?,
