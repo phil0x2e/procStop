@@ -8,6 +8,8 @@ edition = "2018"
 
 [dependencies]
 gpio-cdev = "0.4"
-tm1637-gpio-driver = "2.0.4"
-chrono = "0.4.19"
-rusqlite = "0.24.2"
+tm1637-gpio-driver = "2.0"
+chrono = "0.4"
+rusqlite = "0.24"
+toml = "0.5"
+serde = { version = "1.0", features = ["derive"] }

@@ -1,3 +1,4 @@
+pub mod conf;
 pub mod db;
 pub mod inputs;
 pub mod lcd_1602;

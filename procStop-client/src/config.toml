@@ -1,0 +1,30 @@
+[gpio.leds]
+status = 17
+finished = 27
+
+[gpio.switches]
+active = 14
+standby = 15
+
+[gpio.buttons]
+previous = 2
+next = 3
+finished = 4
+
+[gpio.lcd1602]
+e = 20
+rs = 21
+d4 = 12
+d5 = 7
+d6 = 8
+d7 = 25
+
+[gpio.tm1637]
+clk = 24
+dio = 23
+
+[gpio.progress_bar]
+s0 = 26
+s1 = 19
+s2 = 13
+s3 = 6
