@@ -14,8 +14,9 @@ impl ProgressBar {
         s1_pin: u32,
         s2_pin: u32,
         s3_pin: u32,
+        path: &str,
     ) -> Result<Self, gpio_cdev::Error> {
-        let mut chip = Chip::new("/dev/gpiochip0")?;
+        let mut chip = Chip::new(path)?;
         let s0_handle =
             chip.get_line(s0_pin)?
                 .request(LineRequestFlags::OUTPUT, 0, "ProgressBar S0")?;

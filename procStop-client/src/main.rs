@@ -8,5 +8,6 @@ use procStop_client::*;
 
 fn main() {
     let conf = conf::get_config("config.toml").unwrap();
-    println!("{:#?}", conf);
+    let components = init_components(conf).unwrap();
+    loop {}
 }

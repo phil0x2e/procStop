@@ -1,3 +1,6 @@
+[gpio]
+path = "/dev/gpiochip0"
+
 [gpio.leds]
 status = 17
 finished = 27

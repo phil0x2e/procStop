@@ -12,8 +12,8 @@ pub struct Button {
 }
 
 impl Switch {
-    pub fn new(input_pin: u32, name: &str) -> Result<Self, gpio_cdev::Error> {
-        let mut chip = Chip::new("/dev/gpiochip0")?;
+    pub fn new(input_pin: u32, name: &str, path: &str) -> Result<Self, gpio_cdev::Error> {
+        let mut chip = Chip::new(path)?;
         let input_handle = chip
             .get_line(input_pin)?
             .request(LineRequestFlags::INPUT, 0, name)?;
@@ -32,8 +32,8 @@ impl Switch {
 }
 
 impl Button {
-    pub fn new(input_pin: u32, name: &str) -> Result<Self, gpio_cdev::Error> {
-        let mut chip = Chip::new("/dev/gpiochip0")?;
+    pub fn new(input_pin: u32, name: &str, path: &str) -> Result<Self, gpio_cdev::Error> {
+        let mut chip = Chip::new(path)?;
         let input_handle = chip
             .get_line(input_pin)?
             .request(LineRequestFlags::INPUT, 0, name)?;

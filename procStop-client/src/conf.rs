@@ -10,6 +10,7 @@ pub struct Config {
 
 #[derive(Deserialize, Debug)]
 pub struct GPIO {
+    pub path: String,
     pub leds: LEDGPIO,
     pub switches: SwitchGPIO,
     pub buttons: ButtonGPIO,

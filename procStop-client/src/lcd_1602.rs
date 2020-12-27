@@ -30,8 +30,9 @@ impl LCD {
         d6: u32,
         d7: u32,
         width: usize,
+        path: &str,
     ) -> Result<Self, gpio_cdev::Error> {
-        let mut chip = Chip::new("/dev/gpiochip0")?;
+        let mut chip = Chip::new(path)?;
         let rs_handle = chip
             .get_line(rs)?
             .request(LineRequestFlags::OUTPUT, 0, "LCD_RS")?;
