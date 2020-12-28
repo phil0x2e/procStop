@@ -11,97 +11,142 @@ fn main() {
     main_loop(&conf, &mut components, &db).unwrap();
 }
 
+enum State {
+    Start,
+    Standby,
+    Active,
+    Pause,
+}
+
+impl State {
+    pub fn handle(
+        &self,
+        conf: &conf::Config,
+        components: &mut Components,
+        db: &Database,
+        tasks: &Vec<Task>,
+        current_task_i: &mut usize,
+    ) -> State {
+        match *self {
+            Self::Start => Self::handle_start(conf, components, db, &tasks, current_task_i),
+            Self::Standby => Self::handle_standby(components),
+            Self::Active => Self::handle_active(conf, components, db, &tasks, current_task_i),
+            Self::Pause => Self::handle_pause(conf, components, &tasks, current_task_i),
+        }
+    }
+    fn handle_start(
+        conf: &conf::Config,
+        components: &mut Components,
+        db: &Database,
+        tasks: &Vec<Task>,
+        current_task_i: &mut usize,
+    ) -> State {
+        // Do startup stuff
+        update_displays(components, tasks, *current_task_i).expect("Error updating displays.");
+        Self::Standby
+    }
+    fn handle_standby(components: &mut Components) -> State {
+        // TODO turn stuff off
+        while components
+            .switches
+            .standby
+            .is_on()
+            .expect("Error reading from standby switch.")
+        {
+            sleep(Duration::from_millis(500));
+        }
+        // TODO turn stuff back on
+        Self::Pause
+    }
+    fn handle_active(
+        conf: &conf::Config,
+        components: &mut Components,
+        db: &Database,
+        tasks: &Vec<Task>,
+        current_task_i: &mut usize,
+    ) -> State {
+        components
+            .leds
+            .status
+            .turn_on()
+            .expect("Error setting status LED.");
+        while components
+            .switches
+            .active
+            .is_on()
+            .expect("Error reading from active switch")
+        {
+            if components
+                .buttons
+                .finished
+                .released()
+                .expect("Error reading finished button.")
+            {
+                db.task_set_finished(tasks[*current_task_i].id)
+                    .expect("Error setting task as finished in database.");
+            }
+
+            // TODO Zeit hochzählen, db updaten
+            sleep(Duration::from_millis(100));
+        }
+        Self::Pause
+    }
+
+    fn handle_pause(
+        conf: &conf::Config,
+        components: &mut Components,
+        tasks: &Vec<Task>,
+        current_task_i: &mut usize,
+    ) -> State {
+        components
+            .leds
+            .status
+            .turn_off()
+            .expect("Error setting status LED.");
+        while !components
+            .switches
+            .active
+            .is_on()
+            .expect("Error reading active switch.")
+        {
+            if components
+                .buttons
+                .next
+                .released()
+                .expect("Error reading next button.")
+            {
+                *current_task_i = (*current_task_i + 1) % tasks.len();
+                update_displays(components, tasks, *current_task_i)
+                    .expect("Error updating displays.");
+            } else if components
+                .buttons
+                .previous
+                .released()
+                .expect("Error reading next button.")
+            {
+                *current_task_i = (*current_task_i - 1) % tasks.len();
+                update_displays(components, tasks, *current_task_i)
+                    .expect("Error updating displays.");
+            }
+
+            sleep(Duration::from_millis(100));
+        }
+        Self::Active
+    }
+}
+
 fn main_loop(
     conf: &conf::Config,
-    mut components: &mut Components,
+    components: &mut Components,
     db: &Database,
 ) -> Result<(), gpio_cdev::errors::Error> {
     let mut current_task_i = 0;
-
-    let mut current_date = format!("{}", Local::today().format("%Y-%m-%d"));
-    let mut tasks = db.get_tasks_for_date(&current_date).unwrap();
-    if tasks.is_empty() {
-        components.lcd1602.message_line1("No Tasks today :)")?;
-    } else {
-        components
-            .lcd1602
-            .message_line1(&tasks[current_task_i].name)?;
-    }
+    let mut state = State::Start;
+    let mut current_date;
+    let mut tasks;
     loop {
         current_date = format!("{}", Local::today().format("%Y-%m-%d"));
         tasks = db.get_tasks_for_date(&current_date).unwrap();
-        if all_tasks_done(&tasks) {
-            components.leds.finished.turn_on()?;
-        } else {
-            components.leds.finished.turn_off()?;
-        }
-
-        if components.switches.standby.is_on()? {
-            standby_loop(components)?;
-        } else if tasks.is_empty() {
-            components.lcd1602.message_line1("No Tasks today :)")?;
-        } else if components.switches.active.is_on()? {
-            active_loop(&mut components, &tasks[current_task_i], &db)?;
-        } else if components.buttons.next.released()? {
-            current_task_i = (current_task_i + 1) % tasks.len();
-            update_displays(components, &tasks, current_task_i)?;
-        } else if components.buttons.previous.released()? {
-            current_task_i = (current_task_i - 1) % tasks.len();
-            update_displays(components, &tasks, current_task_i)?;
-        }
-        sleep(Duration::from_millis(100));
+        state = state.handle(conf, components, db, &tasks, &mut current_task_i);
     }
-}
-
-fn active_loop(
-    components: &mut Components,
-    current_task: &Task,
-    db: &Database,
-) -> Result<(), gpio_cdev::errors::Error> {
-    components.leds.status.turn_on()?;
-    while components.switches.active.is_on()? {
-        if components.buttons.finished.released()? {
-            db.task_set_finished(current_task.id).unwrap();
-        }
-        // TODO Zeit hochzählen und db updaten
-
-        sleep(Duration::from_millis(100));
-    }
-    components.leds.status.turn_off()?;
-    Ok(())
-}
-
-fn standby_loop(components: &Components) -> Result<(), gpio_cdev::errors::Error> {
-    while components.switches.standby.is_on()? {
-        sleep(Duration::from_millis(500));
-    }
-    Ok(())
-}
-
-fn update_displays(
-    components: &Components,
-    tasks: &Vec<Task>,
-    current_task_i: usize,
-) -> Result<(), gpio_cdev::errors::Error> {
-    if tasks.is_empty() {
-        components.lcd1602.message_line1("No Tasks today :)")?;
-        components.tm1637.display_time(0, 0);
-        components.progress_bar.set_percentage(100)?;
-        return Ok(());
-    }
-
-    // TODO display proper stuff according to tasks
-    components.lcd1602.message("")?;
-    components.tm1637.display_time(0, 0);
-    components.progress_bar.set_percentage(0)?;
-    Ok(())
-}
-
-fn all_tasks_done(tasks: &Vec<Task>) -> bool {
-    for task in tasks {
-        if !task.finished {
-            return false;
-        }
-    }
-    true
 }
