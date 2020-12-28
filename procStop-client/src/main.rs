@@ -4,13 +4,6 @@ use std::time::Duration;
 
 use procStop_client::*;
 
-fn main() {
-    let conf = conf::get_config("config.toml").unwrap();
-    let mut components = init_components(&conf).unwrap();
-    let db = Database::new(&conf.database.path).unwrap();
-    main_loop(&conf, &mut components, &db).unwrap();
-}
-
 enum State {
     Start,
     Standby,
@@ -84,6 +77,9 @@ impl State {
             {
                 db.task_set_finished(tasks[*current_task_i].id)
                     .expect("Error setting task as finished in database.");
+                update_displays(components, tasks, *current_task_i)
+                    .expect("Error updating displays.");
+                return Self::Active;
             }
 
             // TODO Zeit hochzählen, db updaten
@@ -109,6 +105,28 @@ impl State {
             .is_on()
             .expect("Error reading active switch.")
         {
+            if all_tasks_done(tasks) {
+                for i in 0..16 {
+                    // small success animation
+                    components
+                        .progress_bar
+                        .set(i)
+                        .expect("Error setting progress bar.");
+                    components
+                        .leds
+                        .finished
+                        .turn_off()
+                        .expect("Error setting finished LED.");
+                    sleep(Duration::from_millis(100));
+                    components
+                        .leds
+                        .finished
+                        .turn_on()
+                        .expect("Error setting finished LED.");
+                    sleep(Duration::from_millis(100));
+                }
+            }
+
             if components
                 .buttons
                 .next
@@ -118,6 +136,7 @@ impl State {
                 *current_task_i = (*current_task_i + 1) % tasks.len();
                 update_displays(components, tasks, *current_task_i)
                     .expect("Error updating displays.");
+                return Self::Pause; // Refresh by going back to main loop
             } else if components
                 .buttons
                 .previous
@@ -127,6 +146,7 @@ impl State {
                 *current_task_i = (*current_task_i - 1) % tasks.len();
                 update_displays(components, tasks, *current_task_i)
                     .expect("Error updating displays.");
+                return Self::Pause; // Refresh by going back to main loop
             }
 
             sleep(Duration::from_millis(100));
@@ -149,4 +169,11 @@ fn main_loop(
         tasks = db.get_tasks_for_date(&current_date).unwrap();
         state = state.handle(conf, components, db, &tasks, &mut current_task_i);
     }
+}
+
+fn main() {
+    let conf = conf::get_config("config.toml").unwrap();
+    let mut components = init_components(&conf).unwrap();
+    let db = Database::new(&conf.database.path).unwrap();
+    main_loop(&conf, &mut components, &db).unwrap();
 }
