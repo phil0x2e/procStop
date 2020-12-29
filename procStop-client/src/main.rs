@@ -1,6 +1,6 @@
 use chrono::prelude::*;
 use std::thread::sleep;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 use procStop_client::*;
 
@@ -21,23 +21,24 @@ impl State {
         current_task_i: &mut usize,
     ) -> State {
         match *self {
-            Self::Start => Self::handle_start(conf, components, db, &tasks, current_task_i),
+            Self::Start => Self::handle_start(components, db, &tasks, *current_task_i),
             Self::Standby => Self::handle_standby(components),
-            Self::Active => Self::handle_active(conf, components, db, &tasks, current_task_i),
-            Self::Pause => Self::handle_pause(conf, components, &tasks, current_task_i),
+            Self::Active => Self::handle_active(components, db, &tasks, *current_task_i),
+            Self::Pause => Self::handle_pause(components, &tasks, current_task_i),
         }
     }
+
     fn handle_start(
-        conf: &conf::Config,
         components: &mut Components,
         db: &Database,
         tasks: &Vec<Task>,
-        current_task_i: &mut usize,
+        current_task_i: usize,
     ) -> State {
         // Do startup stuff
-        update_displays(components, tasks, *current_task_i).expect("Error updating displays.");
+        update_displays(components, tasks, current_task_i).expect("Error updating displays.");
         Self::Standby
     }
+
     fn handle_standby(components: &mut Components) -> State {
         // TODO turn stuff off
         while components
@@ -51,18 +52,21 @@ impl State {
         // TODO turn stuff back on
         Self::Pause
     }
+
     fn handle_active(
-        conf: &conf::Config,
         components: &mut Components,
         db: &Database,
         tasks: &Vec<Task>,
-        current_task_i: &mut usize,
+        current_task_i: usize,
     ) -> State {
         components
             .leds
             .status
             .turn_on()
             .expect("Error setting status LED.");
+        let start = Instant::now();
+        let mut elapsed_sum = Duration::from_millis(0);
+        let mut minute_count = 1;
         while components
             .switches
             .active
@@ -75,21 +79,26 @@ impl State {
                 .released()
                 .expect("Error reading finished button.")
             {
-                db.task_set_finished(tasks[*current_task_i].id)
+                db.task_set_finished(tasks[current_task_i].id)
                     .expect("Error setting task as finished in database.");
-                update_displays(components, tasks, *current_task_i)
+                update_displays(components, tasks, current_task_i)
                     .expect("Error updating displays.");
                 return Self::Active;
             }
-
-            // TODO Zeit hochzählen, db updaten
             sleep(Duration::from_millis(100));
+
+            // count time, update time_spent in db
+            elapsed_sum += start.elapsed();
+            if elapsed_sum.as_secs() >= 60 * minute_count {
+                db.task_increase_time_spent(tasks[current_task_i].id, 1)
+                    .expect("Error writing to database.");
+                minute_count += 1;
+            }
         }
         Self::Pause
     }
 
     fn handle_pause(
-        conf: &conf::Config,
         components: &mut Components,
         tasks: &Vec<Task>,
         current_task_i: &mut usize,
@@ -106,25 +115,7 @@ impl State {
             .expect("Error reading active switch.")
         {
             if all_tasks_done(tasks) {
-                for i in 0..16 {
-                    // small success animation
-                    components
-                        .progress_bar
-                        .set(i)
-                        .expect("Error setting progress bar.");
-                    components
-                        .leds
-                        .finished
-                        .turn_off()
-                        .expect("Error setting finished LED.");
-                    sleep(Duration::from_millis(100));
-                    components
-                        .leds
-                        .finished
-                        .turn_on()
-                        .expect("Error setting finished LED.");
-                    sleep(Duration::from_millis(100));
-                }
+                execute_finished_animation(components);
             }
 
             if components

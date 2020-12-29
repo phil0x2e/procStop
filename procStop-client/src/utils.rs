@@ -1,6 +1,8 @@
 use super::components::Components;
 use super::db::Task;
 use super::tm1637_additions::*;
+use std::thread::sleep;
+use std::time::Duration;
 
 pub fn byte_to_bits(n: u8) -> [u8; 8] {
     let mut array: [u8; 8] = [0; 8];
@@ -69,4 +71,26 @@ pub fn update_displays(
         components.tm1637.display_time(hours[0], hours[1]);
     }
     Ok(())
+}
+
+pub fn execute_finished_animation(components: &Components) {
+    for i in 0..16 {
+        // small success animation
+        components
+            .progress_bar
+            .set(i)
+            .expect("Error setting progress bar.");
+        components
+            .leds
+            .finished
+            .turn_off()
+            .expect("Error setting finished LED.");
+        sleep(Duration::from_millis(100));
+        components
+            .leds
+            .finished
+            .turn_on()
+            .expect("Error setting finished LED.");
+        sleep(Duration::from_millis(100));
+    }
 }
