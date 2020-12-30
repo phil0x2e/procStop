@@ -69,6 +69,10 @@ pub fn update_displays(
             .expect("Error writing to lcd screen.");
         let hours = minutes_to_hours(task_get_time_left(&tasks[current_task_i]));
         components.tm1637.display_time(hours[0], hours[1]);
+        components
+            .progress_bar
+            .set_percentage(tasks_get_percentage_done(tasks))
+            .expect("Error setting progress bar.");
     }
     Ok(())
 }
