@@ -65,7 +65,6 @@ impl State {
             .turn_on()
             .expect("Error setting status LED.");
         let start = Instant::now();
-        let mut elapsed_sum = Duration::from_millis(0);
         let mut minute_count = 1;
         while components
             .switches
@@ -88,8 +87,7 @@ impl State {
             sleep(Duration::from_millis(100));
 
             // count time, update time_spent in db
-            elapsed_sum += start.elapsed();
-            if elapsed_sum.as_secs() >= 60 * minute_count {
+            if start.elapsed().as_secs() >= 60 * minute_count {
                 db.task_increase_time_spent(tasks[current_task_i].id, 1)
                     .expect("Error writing to database.");
                 minute_count += 1;
