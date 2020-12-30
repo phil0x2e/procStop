@@ -17,14 +17,14 @@ impl State {
         conf: &conf::Config,
         components: &mut Components,
         db: &Database,
-        tasks: &Vec<Task>,
+        tasks: &mut Vec<Task>,
         current_task_i: &mut usize,
     ) -> State {
         match *self {
-            Self::Start => Self::handle_start(components, db, &tasks, *current_task_i),
+            Self::Start => Self::handle_start(components, db, tasks, *current_task_i),
             Self::Standby => Self::handle_standby(components),
-            Self::Active => Self::handle_active(components, db, &tasks, *current_task_i),
-            Self::Pause => Self::handle_pause(components, &tasks, current_task_i),
+            Self::Active => Self::handle_active(components, db, tasks, *current_task_i),
+            Self::Pause => Self::handle_pause(components, tasks, current_task_i),
         }
     }
 
@@ -56,7 +56,7 @@ impl State {
     fn handle_active(
         components: &mut Components,
         db: &Database,
-        tasks: &Vec<Task>,
+        tasks: &mut Vec<Task>,
         current_task_i: usize,
     ) -> State {
         components
@@ -84,14 +84,23 @@ impl State {
                     .expect("Error updating displays.");
                 return Self::Active;
             }
-            sleep(Duration::from_millis(100));
 
-            // count time, update time_spent in db
+            // update time_spent in db every minute, update displays
+            // and set finished in db if enough time was spent
             if start.elapsed().as_secs() >= 60 * minute_count {
                 db.task_increase_time_spent(tasks[current_task_i].id, 1)
                     .expect("Error writing to database.");
+                let current_date = format!("{}", Local::today().format("%Y-%m-%d"));
+                *tasks = db.get_tasks_for_date(&current_date).unwrap();
+                update_displays(components, tasks, current_task_i)
+                    .expect("Error updating displays.");
+                if tasks[current_task_i].time_spent > tasks[current_task_i].minimum_time {
+                    db.task_set_finished(tasks[current_task_i].id)
+                        .expect("Error writing to database.");
+                }
                 minute_count += 1;
             }
+            sleep(Duration::from_millis(100));
         }
         Self::Pause
     }
@@ -106,14 +115,16 @@ impl State {
             .status
             .turn_off()
             .expect("Error setting status LED.");
+        let mut finished = false;
         while !components
             .switches
             .active
             .is_on()
             .expect("Error reading active switch.")
         {
-            if all_tasks_done(tasks) {
+            if !finished && all_tasks_done(tasks) {
                 execute_finished_animation(components);
+                finished = true;
             }
 
             if components
@@ -156,7 +167,7 @@ fn main_loop(
     loop {
         current_date = format!("{}", Local::today().format("%Y-%m-%d"));
         tasks = db.get_tasks_for_date(&current_date).unwrap();
-        state = state.handle(conf, components, db, &tasks, &mut current_task_i);
+        state = state.handle(conf, components, db, &mut tasks, &mut current_task_i);
     }
 }
 
