@@ -13,8 +13,8 @@ active = 14
 standby = 15
 
 [gpio.buttons]
-previous = 2
-next = 3
+previous = 10
+next = 9
 finished = 4
 
 [gpio.lcd1602]
