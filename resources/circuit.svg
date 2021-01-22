@@ -25,7 +25,7 @@
 	<line x1="640" y1="270" x2="655" y2="270" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="695" y1="270" x2="710" y2="270" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<rect x="655" y="262" width="40" height="16" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
-	<text x="675" y="256" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 675, 256)">470 Ω</text>
+	<text x="675" y="256" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 675, 256)">100 Ω</text>
 	<line x1="710" y1="290" x2="750" y2="290" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="640" y1="270" x2="610" y2="270" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<path d="M 618,270 M 618,262 L 618,278 M 618,270 L 633,278 L 633,262 L 618,270" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
@@ -212,7 +212,7 @@
 	<line x1="640" y1="290" x2="655" y2="290" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<line x1="695" y1="290" x2="710" y2="290" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<rect x="655" y="282" width="40" height="16" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2"/>
-	<text x="675" y="276" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 675, 276)">470 Ω</text>
+	<text x="675" y="276" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 675, 276)">100 Ω</text>
 	<line x1="520" y1="290" x2="610" y2="290" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
 	<text x="530" y="280" style="font-family:Arial;font-size:11px;text-anchor:start" dominant-baseline="middle" transform="rotate(0, 530, 280)">Al finished LED</text>
 	<line x1="640" y1="290" x2="650" y2="290" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2"/>
