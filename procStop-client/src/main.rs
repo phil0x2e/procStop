@@ -4,6 +4,7 @@ use std::time::{Duration, Instant};
 
 use procStop_client::*;
 
+#[derive(Debug)]
 enum State {
     Start,
     Standby,
@@ -36,7 +37,7 @@ impl State {
     ) -> State {
         // Do startup stuff
         update_displays(components, tasks, current_task_i).expect("Error updating displays.");
-        Self::Standby
+        Self::Pause
     }
 
     fn handle_standby(components: &mut Components) -> State {
@@ -143,7 +144,8 @@ impl State {
                 .released()
                 .expect("Error reading next button.")
             {
-                *current_task_i = (*current_task_i - 1) % tasks.len();
+                *current_task_i =
+                    ((*current_task_i as i64 - 1) % tasks.len() as i64).abs() as usize;
                 update_displays(components, tasks, *current_task_i)
                     .expect("Error updating displays.");
                 return Self::Pause; // Refresh by going back to main loop

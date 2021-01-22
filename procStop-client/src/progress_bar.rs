@@ -46,7 +46,7 @@ impl ProgressBar {
         Ok(())
     }
     pub fn set_percentage(&self, percentage: u8) -> Result<(), gpio_cdev::Error> {
-        self.set((percentage * 15) / 100)?;
+        self.set(((percentage as u32 * 15) / 100) as u8)?;
         Ok(())
     }
 }

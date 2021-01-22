@@ -32,7 +32,7 @@ pub struct Buttons {
 }
 
 pub fn init_components(conf: &Config) -> Result<Components, gpio_cdev::Error> {
-    Ok(Components {
+    let comps = Components {
         leds: LEDs {
             status: led::LED::new(conf.gpio.leds.status, "status_led", &conf.gpio.path)?,
             finished: led::LED::new(conf.gpio.leds.finished, "finished_led", &conf.gpio.path)?,
@@ -84,5 +84,7 @@ pub fn init_components(conf: &Config) -> Result<Components, gpio_cdev::Error> {
             conf.gpio.progress_bar.s3,
             &conf.gpio.path,
         )?,
-    })
+    };
+    comps.lcd1602.init_display()?;
+    Ok(comps)
 }
