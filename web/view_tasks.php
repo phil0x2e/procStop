@@ -12,6 +12,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="add_tasks.php">Add Tasks</a></li>
       <li><a class="active" href="view_tasks.php">View Tasks</a></li>
+      <li><a href="stats.php">Stats</a></li>
     </ul>
 	  <h1>View Tasks</h1>
         <form>
