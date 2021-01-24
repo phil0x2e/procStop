@@ -82,3 +82,8 @@ td {
 #task_tbl th {
   background-color: #afafaf;
 }
+
+/* Stats Page */
+#stats_results {
+  font-size: larger;
+}
