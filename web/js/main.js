@@ -57,19 +57,29 @@ function minutes_to_hour_string(minutes) {
 
 function print_stats(stats) {
   function stat_convert_strings(stat) {
-    return {date: stat.date, name: stat.name, finished: Number(stat.finished), minimum_time: Number(stat.minimum_time), time_spent: Number(stat.time_spent)};
+    return {
+      date: stat.date,
+      name: stat.name,
+      finished: Number(stat.finished),
+      minimum_time: Number(stat.minimum_time),
+      time_spent: Number(stat.time_spent),
+    };
   }
   stats = stats.map(stat_convert_strings);
   let total = stats.length;
-  let total_spent = stats.reduce((total, stat) => {return total + stat.time_spent}, 0);
-  let total_finished = stats.reduce((total, stat) => {return total + stat.finished}, 0);
+  let total_spent = stats.reduce((total, stat) => {
+    return total + stat.time_spent;
+  }, 0);
+  let total_finished = stats.reduce((total, stat) => {
+    return total + stat.finished;
+  }, 0);
   let total_unfinished = total - total_finished;
   let results = document.getElementById("stats_results");
   if (total > 0) {
     results.innerHTML = `<br>Tasks total: <b>${total}</b><br>
     Tasks finished: <b>${total_finished}</b><br>
     Tasks unfinished: <b>${total_unfinished}</b><br>
-    Time Spent Total: <b>${minutes_to_hour_string(total_spent)}h</b><br>`
+    Time Spent Total: <b>${minutes_to_hour_string(total_spent)}h</b><br>`;
   } else {
     results.innerHTML = "<br> No Tasks found, that match your criteria.";
   }
@@ -96,7 +106,6 @@ function delete_task(task_id) {
   request.open("POST", "php/ajax_delete_task.php", true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   request.send(`task_id=${task_id}`);
-  
 }
 
 function set_task_table() {
@@ -120,7 +129,7 @@ function set_task_table() {
         response[i].time_spent
       );
       cell_finished.innerHTML = response[i].finished == 0 ? "✗" : "✓";
-      let tasks_id = response[i].id
+      let tasks_id = response[i].id;
       cell_delete.innerHTML = `<button type="button" onclick="delete_task(${tasks_id})">Delete</button>`;
     }
   };
