@@ -55,6 +55,17 @@ function minutes_to_hour_string(minutes) {
   return `${minimum_time_hours}:${minimum_time_minutes}`;
 }
 
+function delete_task(task_id) {
+  let request = new XMLHttpRequest();
+  request.onload = function () {
+    set_task_table();
+  };
+  request.open("POST", "php/ajax_delete_task.php", true);
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  request.send(`task_id=${task_id}`);
+  
+}
+
 function set_task_table() {
   let request = new XMLHttpRequest();
   request.onload = function () {
@@ -67,6 +78,7 @@ function set_task_table() {
       let cell_minimum_time = new_row.insertCell(1);
       let cell_time_spent = new_row.insertCell(2);
       let cell_finished = new_row.insertCell(3);
+      let cell_delete = new_row.insertCell(4);
       cell_name.innerHTML = response[i].name;
       cell_minimum_time.innerHTML = minutes_to_hour_string(
         response[i].minimum_time
@@ -75,6 +87,8 @@ function set_task_table() {
         response[i].time_spent
       );
       cell_finished.innerHTML = response[i].finished == 0 ? "✗" : "✓";
+      let tasks_id = response[i].id
+      cell_delete.innerHTML = `<button type="button" onclick="delete_task(${tasks_id})">Delete</button>`;
     }
   };
   request.open("POST", "php/ajax_get_tasks.php", true);

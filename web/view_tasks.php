@@ -27,6 +27,7 @@
         <th>Minimum Time</th>
         <th>Time Spent</th>
         <th>Finished</th>
+        <th>Delete</th>
     </tr>
     </table>
   </body>

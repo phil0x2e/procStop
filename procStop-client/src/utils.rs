@@ -59,13 +59,18 @@ pub fn update_displays(
     current_task_i: usize,
 ) -> Result<(), gpio_cdev::errors::Error> {
     if tasks.is_empty() {
-        components.lcd1602.message_line1("No Tasks today :)")?;
+        components.lcd1602.message_line1("No Tasks today!")?;
+        components.lcd1602.message_line2(":)")?;
         components.tm1637.display_time(0, 0);
         components.progress_bar.set_percentage(100)?;
     } else {
         components
             .lcd1602
             .message_line1(&tasks[current_task_i].name)
+            .expect("Error writing to lcd screen.");
+        components
+            .lcd1602
+            .message_line2("")
             .expect("Error writing to lcd screen.");
         let hours = minutes_to_hours(task_get_time_left(&tasks[current_task_i]));
         components.tm1637.display_time(hours[0], hours[1]);

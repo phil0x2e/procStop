@@ -1,6 +1,6 @@
 <?php
 function get_tasks($db, $date) {
-    $sql = "SELECT dates.date, tasknames.name, tasks.minimum_time, tasks.time_spent, tasks.finished
+    $sql = "SELECT tasks.id, dates.date, tasknames.name, tasks.minimum_time, tasks.time_spent, tasks.finished
         FROM dates JOIN tasks ON dates.id=tasks.dates_id JOIN tasknames on tasks.tasknames_id=tasknames.id
         WHERE dates.date=:date;";
 

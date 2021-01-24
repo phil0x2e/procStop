@@ -105,7 +105,16 @@ impl LCD {
         }
         Ok(())
     }
-
+    pub fn message_wrapping(&self, message: &str) -> Result<(), gpio_cdev::Error> {
+        if message.len() <= self.width {
+            self.message_line1(&message)?;
+            self.message_line2("")?;
+        } else {
+            self.message_line1(&format!("{}-", &message[0..15]))?;
+            self.message_line2(&message[16..])?;
+        }
+        Ok(())
+    }
     pub fn message_line1(&self, message: &str) -> Result<(), gpio_cdev::Error> {
         self.write_byte(LCD_LINE1, LCD_CMD)?;
         self.message(&message)?;

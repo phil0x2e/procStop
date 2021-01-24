@@ -123,20 +123,17 @@ impl State {
             .is_on()
             .expect("Error reading active switch.")
         {
-            if !finished && all_tasks_done(tasks) {
-                execute_finished_animation(components);
-                finished = true;
-            }
-
             if components
                 .buttons
                 .next
                 .released()
                 .expect("Error reading next button.")
             {
-                *current_task_i = (*current_task_i + 1) % tasks.len();
-                update_displays(components, tasks, *current_task_i)
-                    .expect("Error updating displays.");
+                if tasks.len() > 0 {
+                    *current_task_i = (*current_task_i + 1) % tasks.len();
+                    update_displays(components, tasks, *current_task_i)
+                        .expect("Error updating displays.");
+                }
                 return Self::Pause; // Refresh by going back to main loop
             } else if components
                 .buttons
@@ -144,13 +141,19 @@ impl State {
                 .released()
                 .expect("Error reading next button.")
             {
-                *current_task_i =
-                    ((*current_task_i as i64 - 1) % tasks.len() as i64).abs() as usize;
-                update_displays(components, tasks, *current_task_i)
-                    .expect("Error updating displays.");
+                if tasks.len() > 0 {
+                    *current_task_i =
+                        ((*current_task_i as i64 - 1) % tasks.len() as i64).abs() as usize;
+                    update_displays(components, tasks, *current_task_i)
+                        .expect("Error updating displays.");
+                }
                 return Self::Pause; // Refresh by going back to main loop
             }
 
+            if !finished && all_tasks_done(tasks) {
+                execute_finished_animation(components);
+                finished = true;
+            }
             sleep(Duration::from_millis(100));
         }
         Self::Active
