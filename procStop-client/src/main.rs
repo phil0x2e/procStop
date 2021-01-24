@@ -93,12 +93,12 @@ impl State {
                     .expect("Error writing to database.");
                 let current_date = format!("{}", Local::today().format("%Y-%m-%d"));
                 *tasks = db.get_tasks_for_date(&current_date).unwrap();
-                update_displays(components, tasks, current_task_i)
-                    .expect("Error updating displays.");
-                if tasks[current_task_i].time_spent > tasks[current_task_i].minimum_time {
+                if tasks[current_task_i].time_spent >= tasks[current_task_i].minimum_time {
                     db.task_set_finished(tasks[current_task_i].id)
                         .expect("Error writing to database.");
                 }
+                update_displays(components, tasks, current_task_i)
+                    .expect("Error updating displays.");
                 minute_count += 1;
             }
             sleep(Duration::from_millis(100));
