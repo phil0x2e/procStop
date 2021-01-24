@@ -70,7 +70,7 @@ pub fn update_displays(
             .expect("Error writing to lcd screen.");
         components
             .lcd1602
-            .message_line2("")
+            .message_line2(&format!("{}/{}", current_task_i + 1, tasks.len()))
             .expect("Error writing to lcd screen.");
         let hours = minutes_to_hours(task_get_time_left(&tasks[current_task_i]));
         components.tm1637.display_time(hours[0], hours[1]);
