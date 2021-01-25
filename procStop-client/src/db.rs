@@ -48,7 +48,7 @@ impl Database {
     pub fn task_set_time_spent(&self, task_id: u32, time_spent: u32) -> Result<()> {
         let mut stmt = self
             .connection
-            .prepare("UPDATE tasks SET Time_spent=?1 WHERE id=?2;")?;
+            .prepare("UPDATE tasks SET time_spent=?1 WHERE id=?2;")?;
         stmt.execute(params![time_spent, task_id])?;
         Ok(())
     }
@@ -56,13 +56,8 @@ impl Database {
     pub fn task_increase_time_spent(&self, task_id: u32, increment: u32) -> Result<()> {
         let mut stmt = self
             .connection
-            .prepare("SELECT time_spent FROM tasks WHERE id=?1;")?;
-        let old_time_spent: u32 = stmt.query_row(params![task_id], |row| row.get(0))?;
-
-        let mut stmt = self
-            .connection
-            .prepare("UPDATE tasks SET Time_spent=?1 WHERE id=?2;")?;
-        stmt.execute(params![old_time_spent + increment, task_id])?;
+            .prepare("UPDATE tasks SET time_spent=time_spent+?1 WHERE id=?2;")?;
+        stmt.execute(params![increment, task_id])?;
         Ok(())
     }
 }
