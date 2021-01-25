@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="17cm" height="21cm" viewBox="285 35 322 417" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="346.242" y="35.5" width="210.8" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="346.242" y="35.5" width="210.8" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="451.642" y="49.5">dates</text>
+    <rect style="fill: #ffffff" x="346.242" y="53.5" width="210.8" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="346.242" y="53.5" width="210.8" height="36"/>
+    <polygon style="fill: #000000" points="349.242,63.5 351.242,66.5 353.242,63.5 351.242,60.5 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="355.242" y="69.5">id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.042" y="69.5">INTEGER PRIMARY KEY</text>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="355.242" y1="71.1" x2="542.342" y2="71.1"/>
+    <ellipse style="fill: #000000" cx="351.242" cy="79.5" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="355.242" y="85.5">date</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.042" y="85.5">TEXT NOT NULL UNIQUE</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="285.3" y="233.61" width="318.6" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="285.3" y="233.61" width="318.6" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="444.6" y="247.61">tasks</text>
+    <rect style="fill: #ffffff" x="285.3" y="251.61" width="318.6" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="285.3" y="251.61" width="318.6" height="100"/>
+    <polygon style="fill: #000000" points="288.3,261.61 290.3,264.61 292.3,261.61 290.3,258.61 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.3" y="267.61">id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="267.61">INTEGER PRIMARY KEY</text>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="294.3" y1="269.21" x2="543" y2="269.21"/>
+    <ellipse style="fill: #000000" cx="290.3" cy="277.61" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.3" y="283.61">minimum_time</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="283.61">INTEGER NOT NULL DEFAULT 0</text>
+    <ellipse style="fill: #000000" cx="290.3" cy="293.61" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.3" y="299.61">time_spent</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="299.61">INTEGER NOT NULL DEFAULT 0</text>
+    <ellipse style="fill: #000000" cx="290.3" cy="309.61" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.3" y="315.61">finished</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="315.61">BOOLEAN NOT NULL DEFAULT 0</text>
+    <ellipse style="fill: #000000" cx="290.3" cy="325.61" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.3" y="331.61">tasknames_id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="331.61">INTEGER NOT NULL</text>
+    <ellipse style="fill: #000000" cx="290.3" cy="341.61" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="294.3" y="347.61">days_id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="347.61">INTEGER NOT NULL</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="444.6,233.61 444.6,161.555 504.342,161.555 504.342,99.2361 "/>
+    <polygon style="fill: #000000" points="504.342,91.7361 509.342,101.736 504.342,99.2361 499.342,101.736 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="504.342,91.7361 509.342,101.736 504.342,99.2361 499.342,101.736 "/>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="448.6" y="229.61">*</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="508.342" y="101.5">1</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="396.3" y="397.86" width="210.8" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="396.3" y="397.86" width="210.8" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="501.7" y="411.86">tasknames</text>
+    <rect style="fill: #ffffff" x="396.3" y="415.86" width="210.8" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="396.3" y="415.86" width="210.8" height="36"/>
+    <polygon style="fill: #000000" points="399.3,425.86 401.3,428.86 403.3,425.86 401.3,422.86 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="405.3" y="431.86">id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="446.1" y="431.86">INTEGER PRIMARY KEY</text>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="405.3" y1="433.46" x2="592.4" y2="433.46"/>
+    <ellipse style="fill: #000000" cx="401.3" cy="441.86" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="405.3" y="447.86">name</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="446.1" y="447.86">TEXT NOT NULL UNIQUE</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="444.6,351.61 444.6,374.735 501.7,374.735 501.7,388.124 "/>
+    <polygon style="fill: #000000" points="501.7,395.624 496.7,385.624 501.7,388.124 506.7,385.624 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="501.7,395.624 496.7,385.624 501.7,388.124 506.7,385.624 "/>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="448.6" y="363.61">*</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="505.7" y="393.86">1</text>
+  </g>
+</svg>
