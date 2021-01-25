@@ -35,6 +35,7 @@ pub struct LEDGPIO {
 pub struct SwitchGPIO {
     pub active: u32,
     pub standby: u32,
+    pub hotplug: u32,
 }
 
 #[derive(Deserialize, Debug)]

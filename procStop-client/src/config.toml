@@ -11,6 +11,7 @@ finished = 27
 [gpio.switches]
 active = 14
 standby = 15
+hotplug = 2
 
 [gpio.buttons]
 previous = 10

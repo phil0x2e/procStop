@@ -10,6 +10,7 @@ enum State {
     Standby,
     Active,
     Pause,
+    Unplugged,
 }
 
 impl State {
@@ -26,6 +27,7 @@ impl State {
             Self::Standby => Self::handle_standby(components),
             Self::Active => Self::handle_active(components, db, tasks, *current_task_i),
             Self::Pause => Self::handle_pause(components, tasks, current_task_i),
+            Self::Unplugged => Self::handle_unplugged(components),
         }
     }
 
@@ -37,6 +39,26 @@ impl State {
     ) -> State {
         // Do startup stuff
         update_displays(components, tasks, current_task_i).expect("Error updating displays.");
+        Self::Pause
+    }
+
+    fn handle_unplugged(components: &mut Components) -> State {
+        // It's connected, when hotplug is 0 and not connected when 1
+        // (Builtin pull up resistor on pin 2)
+        while components
+            .switches
+            .hotplug
+            .is_on()
+            .expect("Error reading hotplug pin.")
+        {
+            sleep(Duration::from_millis(1000));
+        }
+        // Wait, so the plug is fully connected when initializing display
+        sleep(Duration::from_millis(1000));
+        components
+            .lcd1602
+            .init_display()
+            .expect("Error initializing lcd display.");
         Self::Pause
     }
 
@@ -73,6 +95,14 @@ impl State {
             .is_on()
             .expect("Error reading from active switch")
         {
+            if components
+                .switches
+                .hotplug
+                .is_on()
+                .expect("Error reading hotplug pin.")
+            {
+                return State::Unplugged;
+            }
             if components
                 .buttons
                 .finished
@@ -123,6 +153,14 @@ impl State {
             .is_on()
             .expect("Error reading active switch.")
         {
+            if components
+                .switches
+                .hotplug
+                .is_on()
+                .expect("Error reading hotplug pin.")
+            {
+                return State::Unplugged;
+            }
             if components
                 .buttons
                 .next

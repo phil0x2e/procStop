@@ -23,6 +23,7 @@ pub struct LEDs {
 pub struct Switches {
     pub active: inputs::Switch,
     pub standby: inputs::Switch,
+    pub hotplug: inputs::Switch,
 }
 
 pub struct Buttons {
@@ -46,6 +47,11 @@ pub fn init_components(conf: &Config) -> Result<Components, gpio_cdev::Error> {
             standby: inputs::Switch::new(
                 conf.gpio.switches.standby,
                 "standby_switch",
+                &conf.gpio.path,
+            )?,
+            hotplug: inputs::Switch::new(
+                conf.gpio.switches.hotplug,
+                "hotplug detector",
                 &conf.gpio.path,
             )?,
         },
