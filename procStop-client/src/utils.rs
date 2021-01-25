@@ -4,6 +4,10 @@ use super::tm1637_additions::*;
 use std::thread::sleep;
 use std::time::Duration;
 
+pub fn modulo(lhs: i64, rhs: i64) -> u32 {
+    ((lhs % rhs + rhs) % rhs) as u32
+}
+
 pub fn byte_to_bits(n: u8) -> [u8; 8] {
     let mut array: [u8; 8] = [0; 8];
     let mut mask = 0x01;

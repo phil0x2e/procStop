@@ -181,7 +181,7 @@ impl State {
             {
                 if tasks.len() > 0 {
                     *current_task_i =
-                        ((*current_task_i as i64 - 1) % tasks.len() as i64).abs() as usize;
+                        modulo(*current_task_i as i64 - 1, tasks.len() as i64) as usize;
                     update_displays(components, tasks, *current_task_i)
                         .expect("Error updating displays.");
                 }
