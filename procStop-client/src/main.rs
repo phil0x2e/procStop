@@ -51,10 +51,10 @@ impl State {
             .is_on()
             .expect("Error reading hotplug pin.")
         {
-            sleep(Duration::from_millis(1000));
+            sleep(Duration::from_secs(2));
         }
         // Wait, so the plug is fully connected when initializing display
-        sleep(Duration::from_millis(1000));
+        sleep(Duration::from_secs(1));
         components
             .lcd1602
             .init_display()
@@ -210,6 +210,7 @@ fn main_loop(
     loop {
         current_date = format!("{}", Local::today().format("%Y-%m-%d"));
         tasks = db.get_tasks_for_date(&current_date).unwrap();
+        update_displays(components, &tasks, current_task_i).expect("Error updating displays.");
         state = state.handle(conf, components, db, &mut tasks, &mut current_task_i);
     }
 }
