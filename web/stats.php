@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>ProcStop - Stats</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+    <link rel="shortcut icon" sizes="196x196" type="image/png" href="icon196.png"/>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/main.js"></script>
