@@ -210,6 +210,13 @@ fn main_loop(
     loop {
         current_date = format!("{}", Local::today().format("%Y-%m-%d"));
         tasks = db.get_tasks_for_date(&current_date).unwrap();
+        if !all_tasks_done(&tasks) {
+            components
+                .leds
+                .finished
+                .turn_off()
+                .expect("Error turning off LED");
+        }
         update_displays(components, &tasks, current_task_i).expect("Error updating displays.");
         state = state.handle(conf, components, db, &mut tasks, &mut current_task_i);
     }
