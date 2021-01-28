@@ -19,9 +19,8 @@ For more infos see https://github.com/phil0x2e/procStop";
                 .long("config")
                 .value_name("CONFIG")
                 .help("Path to the toml config file.")
-                .required(true)
                 .takes_value(true)
-                .index(1),
+                .default_value("~/.config/procstop/config.toml"),
         )
         .get_matches();
     Args {
