@@ -2,7 +2,7 @@ use chrono::prelude::*;
 use std::thread::sleep;
 use std::time::{Duration, Instant};
 
-use proc_stop_client::*;
+use procstop_client::*;
 
 #[derive(Debug)]
 enum State {
