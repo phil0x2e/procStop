@@ -218,7 +218,8 @@ fn main_loop(components: &mut Components, db: &Database) -> Result<(), gpio_cdev
 
 fn main() {
     let args = get_commandline_args();
-    let conf = conf::get_config(&args.config_path).expect("Error! Config File not found.");
+    let conf = conf::get_config(&args.config_path)
+        .expect("Error! Config File not found or not in the correct format.");
     let mut components = init_components(&conf).unwrap();
     let db = Database::new(&conf.database.path).unwrap();
     main_loop(&mut components, &db).unwrap();
