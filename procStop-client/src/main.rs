@@ -217,7 +217,8 @@ fn main_loop(components: &mut Components, db: &Database) -> Result<(), gpio_cdev
 }
 
 fn main() {
-    let conf = conf::get_config("config.toml").unwrap();
+    let args = get_commandline_args();
+    let conf = conf::get_config(&args.config_path).unwrap();
     let mut components = init_components(&conf).unwrap();
     let db = Database::new(&conf.database.path).unwrap();
     main_loop(&mut components, &db).unwrap();

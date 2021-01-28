@@ -1,3 +1,4 @@
+pub mod args;
 pub mod components;
 pub mod conf;
 pub mod db;
@@ -7,6 +8,7 @@ pub mod led;
 pub mod progress_bar;
 pub mod tm1637_additions;
 pub mod utils;
+pub use args::*;
 pub use components::*;
 pub use db::*;
 pub use inputs::*;
