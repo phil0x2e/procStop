@@ -2,7 +2,7 @@ use chrono::prelude::*;
 use std::thread::sleep;
 use std::time::{Duration, Instant};
 
-use procStop_client::*;
+use proc_stop_client::*;
 
 #[derive(Debug)]
 enum State {
@@ -16,14 +16,13 @@ enum State {
 impl State {
     pub fn handle(
         &self,
-        conf: &conf::Config,
         components: &mut Components,
         db: &Database,
         tasks: &mut Vec<Task>,
         current_task_i: &mut usize,
     ) -> State {
         match *self {
-            Self::Start => Self::handle_start(components, db, tasks, *current_task_i),
+            Self::Start => Self::handle_start(components, tasks, *current_task_i),
             Self::Standby => Self::handle_standby(components),
             Self::Active => Self::handle_active(components, db, tasks, *current_task_i),
             Self::Pause => Self::handle_pause(components, tasks, current_task_i),
@@ -33,7 +32,6 @@ impl State {
 
     fn handle_start(
         components: &mut Components,
-        db: &Database,
         tasks: &Vec<Task>,
         current_task_i: usize,
     ) -> State {
@@ -198,11 +196,7 @@ impl State {
     }
 }
 
-fn main_loop(
-    conf: &conf::Config,
-    components: &mut Components,
-    db: &Database,
-) -> Result<(), gpio_cdev::errors::Error> {
+fn main_loop(components: &mut Components, db: &Database) -> Result<(), gpio_cdev::errors::Error> {
     let mut current_task_i = 0;
     let mut state = State::Start;
     let mut current_date;
@@ -218,7 +212,7 @@ fn main_loop(
                 .expect("Error turning off LED");
         }
         update_displays(components, &tasks, current_task_i).expect("Error updating displays.");
-        state = state.handle(conf, components, db, &mut tasks, &mut current_task_i);
+        state = state.handle(components, db, &mut tasks, &mut current_task_i);
     }
 }
 
@@ -226,5 +220,5 @@ fn main() {
     let conf = conf::get_config("config.toml").unwrap();
     let mut components = init_components(&conf).unwrap();
     let db = Database::new(&conf.database.path).unwrap();
-    main_loop(&conf, &mut components, &db).unwrap();
+    main_loop(&mut components, &db).unwrap();
 }

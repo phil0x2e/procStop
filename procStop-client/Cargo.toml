@@ -1,5 +1,5 @@
 [package]
-name = "procStop-client"
+name = "proc-stop-client"
 version = "0.1.0"
 authors = ["Phil <ph-ketteni@t-online.de>"]
 edition = "2018"
