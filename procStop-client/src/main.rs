@@ -1,4 +1,5 @@
 use chrono::prelude::*;
+use proctitle::set_title;
 use std::thread::sleep;
 use std::time::{Duration, Instant};
 
@@ -36,6 +37,7 @@ impl State {
         current_task_i: usize,
     ) -> State {
         // Do startup stuff
+        set_title("procstop_client: start");
         update_displays(components, tasks, current_task_i).expect("Error updating displays.");
         Self::Pause
     }
@@ -43,6 +45,7 @@ impl State {
     fn handle_unplugged(components: &mut Components) -> State {
         // It's connected, when hotplug is 0 and not connected when 1
         // (Builtin pull up resistor on pin 2)
+        set_title("procstop_client: unplugged");
         while components
             .switches
             .hotplug
@@ -62,6 +65,7 @@ impl State {
 
     fn handle_standby(components: &mut Components) -> State {
         // TODO turn stuff off
+        set_title("procstop_client: standby");
         while components
             .switches
             .standby
@@ -80,6 +84,7 @@ impl State {
         tasks: &mut Vec<Task>,
         current_task_i: usize,
     ) -> State {
+        set_title("procstop_client: active");
         components
             .leds
             .status
@@ -139,6 +144,7 @@ impl State {
         tasks: &Vec<Task>,
         current_task_i: &mut usize,
     ) -> State {
+        set_title("procstop_client: pause");
         components
             .leds
             .status
