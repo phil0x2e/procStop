@@ -116,7 +116,7 @@ impl State {
 
             // update time_spent in db every minute, update displays
             // and set finished in db if enough time was spent
-            if start.elapsed().as_secs() >= 60 * minute_count {
+            if start.elapsed().as_secs() >= 60 * minute_count && tasks.len() > 0 {
                 db.task_increase_time_spent(tasks[current_task_i].id, 1)
                     .expect("Error writing to database.");
                 let current_date = format!("{}", Local::today().format("%Y-%m-%d"));
