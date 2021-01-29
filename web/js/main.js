@@ -79,7 +79,8 @@ function print_stats(stats) {
     results.innerHTML = `<br>Tasks total: <b>${total}</b><br>
     Tasks finished: <b>${total_finished}</b><br>
     Tasks unfinished: <b>${total_unfinished}</b><br>
-    Time Spent Total: <b>${minutes_to_hour_string(total_spent)}h</b><br>`;
+    Time Spent Total: <b>${minutes_to_hour_string(total_spent)}h</b><br>
+	Time spent Average: <b>${minutes_to_hour_string(total_spent/total)}h</b><br>`;
   } else {
     results.innerHTML = "<br> No Tasks found, that match your criteria.";
   }
