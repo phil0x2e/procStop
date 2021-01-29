@@ -48,6 +48,7 @@ function clear_task_table() {
 }
 
 function minutes_to_hour_string(minutes) {
+  minutes = Math.round(minutes)
   let minimum_time_hours = Math.floor(minutes / 60)
     .toString()
     .padStart(2, "0");
