@@ -25,7 +25,7 @@
       <table id="tbl-inputs">
         <tr>
           <td>
-            <input type="text" name="task1" id="task1" list="tasks" placeholder="Task" autocomplete="off" autofocus required/>
+            <input type="text" name="task1" id="task1" list="tasks" placeholder="Task" autocomplete="off" maxlength="16" autofocus required/>
             <datalist id="tasks">
             <?php
             function get_task_names($db) {
@@ -74,8 +74,8 @@
           </td>
         </tr>
       </table>
-      <button type="button" onclick="addRow('tbl-inputs');">➕</button>
-      <button type="button" onclick="deleteRow('tbl-inputs');">➖</button>
+      <button type="button" onclick="addTaskRow('tbl-inputs');">➕</button>
+      <button type="button" onclick="deleteTaskRow('tbl-inputs');">➖</button>
       <button type="submit">Submit</button>
     </form><br><br>
     <?php if (isset($_GET["success"]) && $_GET["success"] == "true") {

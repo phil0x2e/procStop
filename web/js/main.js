@@ -1,4 +1,4 @@
-function addRow(table_id) {
+function addTaskRow(table_id) {
   let table = document.getElementById(table_id);
   let new_row = table.insertRow(-1);
   let cell_taskname = new_row.insertCell(0);
@@ -6,7 +6,7 @@ function addRow(table_id) {
   let current_row_number = table.rows.length;
 
   cell_taskname.innerHTML = `
-	<input type="text" id="task${current_row_number}" name="task${current_row_number}" list="tasks" autocomplete="off" placeholder="Task" required \>`;
+	<input type="text" id="task${current_row_number}" name="task${current_row_number}" list="tasks" autocomplete="off" placeholder="Task" maxlength="16" required \>`;
   cell_time.innerHTML = `
             <input
               type="number"
@@ -32,7 +32,7 @@ function addRow(table_id) {
             />`;
 }
 
-function deleteRow(table_id) {
+function deleteTaskRow(table_id) {
   let table = document.getElementById(table_id);
   if (table.rows.length > 1) {
     table.deleteRow(-1);
