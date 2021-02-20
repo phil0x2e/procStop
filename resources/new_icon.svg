@@ -15,10 +15,24 @@
    sodipodi:docname="new_icon.svg"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    inkscape:export-filename="/home/phil/Rastergrafik.png"
-   inkscape:export-xdpi="96.300003"
-   inkscape:export-ydpi="96.300003">
+   inkscape:export-xdpi="18.375"
+   inkscape:export-ydpi="18.375">
   <defs
      id="defs221">
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path4711" />
+    </marker>
     <rect
        x="-3140"
        y="120"
@@ -458,9 +472,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.58154297"
-     inkscape:cx="327.54112"
-     inkscape:cy="592.94029"
+     inkscape:zoom="0.41121298"
+     inkscape:cx="310.62987"
+     inkscape:cy="221.50641"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -493,7 +507,7 @@
      id="layer1"
      style="display:inline;opacity:1">
     <path
-       style="fill:#4d4d4d;filter:url(#filter615-3)"
+       style="fill:#4d4d4d;filter:url(#filter615-3);fill-opacity:1;paint-order:fill markers stroke"
        id="rect241-9"
        width="1024"
        height="1024"
@@ -511,21 +525,25 @@
          y="810"><tspan
            dx="0 0 0 0 0 0 0 79.999542"
            style="font-size:400px">...... .</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       id="text623-2"
-       style="font-size:475.241px;line-height:1.25;font-family:'DSEG7 Classic Mini';-inkscape-font-specification:'DSEG7 Classic Mini';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect625-3);fill:#ff796b;fill-opacity:1;filter:url(#filter637-6);"
-       transform="matrix(1.0669974,0,0,1.0669974,-37.8456,176.84481)"><tspan
-         x="80"
-         y="654.64612"><tspan
-           style="font-size:475.241px;fill:#ff796b;fill-opacity:1">P:5</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       id="text1777"
-       style="font-size:400px;line-height:1.25;font-family:'DSEG7 Classic Mini';-inkscape-font-specification:'DSEG7 Classic Mini';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1779);fill:#00ff4b;filter:url(#filter1793);fill-opacity:1;"
-       transform="matrix(1.1944553,0,0,1.1944553,3832.5882,-478.13726)"><tspan
-         x="-3140"
-         y="570"><tspan
-           style="font-size:400px;fill:#00ff4b;fill-opacity:1">.. . . . . . . . . .</tspan></tspan></text>
+    <g
+       id="g2635"
+       transform="translate(0,36.73299)">
+      <text
+         xml:space="preserve"
+         id="text623-2"
+         style="font-size:475.241px;line-height:1.25;font-family:'DSEG7 Classic Mini';-inkscape-font-specification:'DSEG7 Classic Mini';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect625-3);fill:#ff796b;fill-opacity:1;filter:url(#filter637-6);"
+         transform="matrix(0.96233133,0,0,0.96233133,16.090988,172.98853)"><tspan
+           x="80"
+           y="654.64612"><tspan
+             style="font-size:475.241px;fill:#ff796b;fill-opacity:1">P:5</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         id="text1777"
+         style="font-size:400px;line-height:1.25;font-family:'DSEG7 Classic Mini';-inkscape-font-specification:'DSEG7 Classic Mini';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1779);fill:#00ff4b;fill-opacity:1;filter:url(#filter1793);"
+         transform="matrix(1.0772864,0,0,1.0772864,3506.8584,-417.74371)"><tspan
+           x="-3140"
+           y="570"><tspan
+             style="font-size:400px;fill:#00ff4b;fill-opacity:1">.. . . . . . . . . .</tspan></tspan></text>
+    </g>
   </g>
 </svg>
