@@ -204,6 +204,10 @@ fn main_loop(components: &mut Components, db: &Database) -> Result<(), gpio_cdev
     loop {
         current_date = format!("{}", Local::today().format("%Y-%m-%d"));
         tasks = db.get_tasks_for_date(&current_date).unwrap();
+        if current_task_i > tasks.len() {
+            current_task_i = 0;
+        }
+
         if !all_tasks_done(&tasks) {
             components
                 .leds
