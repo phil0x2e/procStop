@@ -68,9 +68,27 @@ impl State {
             .is_on()
             .expect("Error reading from standby switch.")
         {
+            components
+                .leds
+                .status
+                .turn_off()
+                .expect("Couldn't turn off status LED.");
+            components
+                .leds
+                .finished
+                .turn_off()
+                .expect("Couldn't turn off finishd LED.");
+            components
+                .progress_bar
+                .set(0)
+                .expect("Error setting progress bar.");
             sleep(Duration::from_millis(500));
         }
         // TODO turn stuff back on
+        components
+            .lcd1602
+            .init_display()
+            .expect("Error initializing lcd display.");
         Self::Pause
     }
 
