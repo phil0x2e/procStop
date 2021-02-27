@@ -61,8 +61,7 @@ impl State {
     }
 
     fn handle_standby(components: &mut Components) -> State {
-        // TODO turn stuff off
-        while components
+        while !components
             .switches
             .standby
             .is_on()
@@ -84,7 +83,6 @@ impl State {
                 .expect("Error setting progress bar.");
             sleep(Duration::from_millis(500));
         }
-        // TODO turn stuff back on
         components
             .lcd1602
             .init_display()
@@ -119,7 +117,7 @@ impl State {
             {
                 return State::Unplugged;
             }
-            if components
+            if !components
                 .switches
                 .standby
                 .is_on()
@@ -185,7 +183,7 @@ impl State {
             {
                 return State::Unplugged;
             }
-            if components
+            if !components
                 .switches
                 .standby
                 .is_on()
