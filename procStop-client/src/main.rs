@@ -61,26 +61,27 @@ impl State {
     }
 
     fn handle_standby(components: &mut Components) -> State {
+        components
+            .leds
+            .status
+            .turn_off()
+            .expect("Couldn't turn off status LED.");
+        components
+            .leds
+            .finished
+            .turn_off()
+            .expect("Couldn't turn off finishd LED.");
+        components
+            .progress_bar
+            .set(0)
+            .expect("Error setting progress bar.");
+        components.tm1637.clear();
         while !components
             .switches
             .standby
             .is_on()
             .expect("Error reading from standby switch.")
         {
-            components
-                .leds
-                .status
-                .turn_off()
-                .expect("Couldn't turn off status LED.");
-            components
-                .leds
-                .finished
-                .turn_off()
-                .expect("Couldn't turn off finishd LED.");
-            components
-                .progress_bar
-                .set(0)
-                .expect("Error setting progress bar.");
             sleep(Duration::from_millis(500));
         }
         components
