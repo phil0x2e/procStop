@@ -120,6 +120,14 @@ impl State {
                 return State::Unplugged;
             }
             if components
+                .switches
+                .standby
+                .is_on()
+                .expect("Error reading standby switch.")
+            {
+                return State::Standby;
+            }
+            if components
                 .buttons
                 .finished
                 .released()
@@ -176,6 +184,14 @@ impl State {
                 .expect("Error reading hotplug pin.")
             {
                 return State::Unplugged;
+            }
+            if components
+                .switches
+                .standby
+                .is_on()
+                .expect("Error reading standby switch.")
+            {
+                return State::Standby;
             }
             if components
                 .buttons
