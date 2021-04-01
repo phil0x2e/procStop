@@ -3,6 +3,8 @@ name = "procstop-client"
 version = "0.3.1"
 authors = ["Phil <ph-ketteni@t-online.de>"]
 edition = "2018"
+license-file = '../LICENSE'
+license = 'GPL-3.0-or-later'
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
