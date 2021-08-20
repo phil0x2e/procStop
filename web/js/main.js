@@ -11,23 +11,23 @@ function addTaskRow(table_id) {
             <input
               type="number"
               id="time_hours${current_row_number}"
-			  class="time_hours"
+	      class="time_hours"
               name="time_hours${current_row_number}"
               min="0"
               max="24"
-			  size="2"
-              placeholder="hours"
+	      size="3"
+              placeholder="h"
               required
             /> :
             <input
               type="number"
               id="time_minutes${current_row_number}"
-			  class="time_minutes"
+	      class="time_minutes"
               name="time_minutes${current_row_number}"
               min="0"
               max="59"
-			  size="2"
-              placeholder="min"
+	      size="3"
+              placeholder="m"
               required
             />`;
 }

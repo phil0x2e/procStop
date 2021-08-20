@@ -53,22 +53,22 @@
               type="number"
               id="time_hours1"
               name="time_hours1"
-			  class="time_hours"
+	      class="time_hours"
               min="0"
               max="24"
-			  size="2"
-              placeholder="hours"
+	      size="3"
+              placeholder="h"
               required
             /> :
             <input
               type="number"
               id="time_minutes1"
-              name="time_minutes1"
-			  class="time_minutes"
+              name="time_minutes1" 
+ 	      class="time_minutes"
               min="0"
               max="59"
-			  size="2"
-              placeholder="min"
+	      size="3"
+              placeholder="m"
               required
             />
           </td>
