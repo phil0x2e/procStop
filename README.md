@@ -60,5 +60,5 @@ I first prototyped it inside a cardboard box.
 ## Internals (for developers)
 The documentation below is not relevant for using the software as it is, but for anyone who may want to improve or change it.
 
-![Entity Relationship Diagram](resources/database_relation.svg)
+<img src="resources/database_relation.svg" alt="Entity Relationship Diagram" width="400"/>
 
