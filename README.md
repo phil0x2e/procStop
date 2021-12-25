@@ -8,6 +8,8 @@ Also you'll get statistics to analyze your progress.
 ProcStop consists of a web interface and a client software.
 It is designed to run on a *Raspberry Pi* and currently only tested on *Raspberry Pi 2 B* with *Raspbian*, but could possibly run on any device with enough GPIO Pins.
 
+<img src="resources/device_pic.png" alt="Picture of procstop device turned on" width="500"/>
+
 ## ProcStop Web
 The [Web interface](web/) is used to add tasks for a day and for viewing the statistics.
 
