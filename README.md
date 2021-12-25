@@ -56,3 +56,9 @@ To build the hardware refer to the hardware diagram below, as well as the [Hardw
 
 For housing you may use any container, that is large enough to fit the Raspberry-Pi and the other electronics.
 I first prototyped it inside a cardboard box.
+
+## Internals (for developers)
+The documentation below is not relevant for using the software as it is, but for anyone who may want to improve or change it.
+
+![Entity Relationship Diagram](resources/database_relation.svg)
+
