@@ -46,13 +46,6 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="396.7" y="347.61">INTEGER NOT NULL</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="444.6,233.61 444.6,161.555 504.342,161.555 504.342,99.2361 "/>
-    <polygon style="fill: #000000" points="504.342,91.7361 509.342,101.736 504.342,99.2361 499.342,101.736 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="504.342,91.7361 509.342,101.736 504.342,99.2361 499.342,101.736 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="448.6" y="229.61">*</text>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="508.342" y="101.5">1</text>
-  </g>
-  <g>
     <rect style="fill: #ffffff" x="396.3" y="397.86" width="210.8" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="396.3" y="397.86" width="210.8" height="18"/>
     <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="501.7" y="411.86">tasknames</text>
@@ -67,10 +60,19 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="446.1" y="447.86">TEXT NOT NULL UNIQUE</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="444.6,351.61 444.6,374.735 501.7,374.735 501.7,388.124 "/>
-    <polygon style="fill: #000000" points="501.7,395.624 496.7,385.624 501.7,388.124 506.7,385.624 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="501.7,395.624 496.7,385.624 501.7,388.124 506.7,385.624 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="448.6" y="363.61">*</text>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="505.7" y="393.86">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="444.6,233.61 444.6,161.555 451.642,161.555 451.642,89.5 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="444.6" y1="223.61" x2="439.6" y2="233.61"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="444.6" y1="223.61" x2="449.6" y2="233.61"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="439.6" y1="223.61" x2="449.6" y2="223.61"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="446.642" y1="94.5" x2="456.642" y2="94.5"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="446.642" y1="99.5" x2="456.642" y2="99.5"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="444.6,351.61 444.6,374.735 501.7,374.735 501.7,397.86 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="444.6" y1="361.61" x2="449.6" y2="351.61"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="444.6" y1="361.61" x2="439.6" y2="351.61"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="449.6" y1="361.61" x2="439.6" y2="361.61"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="506.7" y1="392.86" x2="496.7" y2="392.86"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="506.7" y1="387.86" x2="496.7" y2="387.86"/>
   </g>
 </svg>
