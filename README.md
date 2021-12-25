@@ -32,8 +32,27 @@ The [client](procStop-client) is used to operate the hardware described in the [
 
 
 ## Hardware
-To build the hardware refer to the hardware diagram below:
+To build the hardware refer to the hardware diagram below, as well as the [Hardware list](#hardware-list).
 ![Eletronic circuit diagram of the hardware](resources/circuit.svg)
+
+### Hardware List
+- 1x Raspberry Pi
+- 16x green LEDs (Progress bar, finished LED)
+- 1x red LED (Active LED)
+- 1x simple Switch (Idle/active switch)
+- 1x DPST two Pole Switch (Standby switch)
+- 2x Buttons (Next/Previous Task)
+- 1x Key-activated "button" (for finishing a task early)
+- 15x 470Ω resistors (Progress bar leds)
+- 2x 100Ω resistors (for status and finished LEDs)
+- 5x 10kΩ resistors ([Pull down resistors](https://en.wikipedia.org/wiki/Pull-up_resistor))
+- 1x 50kΩ Potentiometer resistor (for changing contrast of 1602 display)
+- 14x diodes (with as little a voltage drop as possible, for status bar)
+- 1x CD74HC4067 De-Multiplexer (for decreasing amount of gpio pins required by progress bar)
+- 1x TM1637 4-digit 7-segment Display (for displaying time left on current task)
+- 1x LCD 1602 Display (for displaying current tasks name and amount of total tasks)
+- 1x Raspberry Pi GPIO breakout board (for easier construction)
+- Enough wires to connect it all
 
 For housing you may use any container, that is large enough to fit the Raspberry-Pi and the other electronics.
 I first prototyped it inside a cardboard box.
