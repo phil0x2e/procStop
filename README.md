@@ -25,15 +25,19 @@ The [Web interface](web/) is used to add or delete tasks for any day you want an
 
 ![Screenshot of web interface used to add new tasks](resources/screenshot_web_add_tasks.png)
 
-
-
 ## ProcStop client
 The [client](procStop-client) is used to operate the hardware described in the [hardware section](#hardware).
 
+It can be built using `cargo`.
+Before running the client, make sure to place the [config file config.toml](procStop-client/src/config.toml) in the directory `~/.config/procstop/` or load it using the `-c <path>` option from anywhere you like.
+The config file can be used to change the used gpio chip, the path to the sqlite3 database file, as well as all the used gpio pins.
 
 ## Hardware
 To build the hardware refer to the hardware diagram below, as well as the [Hardware list](#hardware-list).
 ![Eletronic circuit diagram of the hardware](resources/circuit.svg)
+
+The gpio pins in the diagram above are the default ones, they may be changed in the [config file config.toml](procStop-client/src/config.toml) (see above).
+Also I used a gpio breakout board instead of connecting everything directly to the pi.
 
 ### Hardware List
 - 1x Raspberry Pi
