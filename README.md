@@ -1,6 +1,4 @@
 # procStop
-Stop procrastinating now!
-
 ProcStop is a hardware checklist tool, you can use to keep track of your tasks for the current day.
 The idea came from a [youtube video](https://youtu.be/JJeQIXBdVuk) by Mike Boyd.
 ProcStop tries to expand on that idea by letting you define any number of tasks and also ensuring that you do them for as long as you planned.
