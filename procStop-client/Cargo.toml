@@ -1,19 +1,19 @@
 [package]
 name = "procstop-client"
-version = "0.3.1"
-authors = ["Phil <ph-ketteni@t-online.de>"]
-edition = "2018"
+version = "0.3.2"
+authors = ["Phil <phil0x2e@posteo.org>"]
+edition = "2021"
 license-file = '../LICENSE'
 license = 'GPL-3.0-or-later'
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gpio-cdev = "0.4"
+gpio-cdev = "0.5"
 tm1637-gpio-driver = "2.0"
 chrono = "0.4"
-rusqlite = "0.24"
+rusqlite = "0.26"
 toml = "0.5"
 serde = { version = "1.0", features = ["derive"] }
-clap = "2.33"
+clap = {version = "3.0", features = ["cargo"] }
 shellexpand = "2.1"

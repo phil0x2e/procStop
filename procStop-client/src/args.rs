@@ -16,8 +16,8 @@ For more infos see https://github.com/phil0x2e/procStop";
         .author(crate_authors!())
         .about(description)
         .arg(
-            Arg::with_name("config")
-                .short("c")
+            Arg::new("config")
+                .short('c')
                 .long("config")
                 .value_name("CONFIG")
                 .help("Path to the toml config file.")
